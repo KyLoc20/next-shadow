@@ -20,7 +20,7 @@ type CustomButtonProps = {
   disabled?: boolean;
   tile?: boolean;
 };
-export enum CustomButtonType {
+enum CustomButtonType {
   Primary1,
 }
 type CustomButtonFactory = {
@@ -35,7 +35,7 @@ const FACTORY: CustomButtonFactory = {
     borderRadius: 7,
   },
 };
-export function useCustomButton(which: CustomButtonType) {
+function useCustomButton(which: CustomButtonType) {
   const customProps = FACTORY[which];
   const renderButton = (props: ButtonProps) => (
     <Button
@@ -59,5 +59,9 @@ export function useCustomButton(which: CustomButtonType) {
     </Button>
   );
   return [renderButton];
+}
+export {
+  useCustomButton,
+  CustomButtonType,
 }
 
