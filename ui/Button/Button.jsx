@@ -9,17 +9,7 @@ import {
 } from "../Effect";
 import { getColor } from "./color";
 import { getSize } from "./size";
-const ButtonDefaultRemoval = styled("button")`
-  margin: 0;
-  padding: 0;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  user-select: none;
-  background: transparent;
-  box-sizing: border-box;
-  font-family: "Roboto";
-`;
+import { ButtonDefaultRemoval } from "./base";
 const ButtonComponent = styled(ButtonDefaultRemoval)`
   display: inline-flex;
   flex-shrink: 0;

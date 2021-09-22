@@ -75,6 +75,20 @@ function validateFailing(propName, componentName) {
       "`. Validation failed."
   );
 }
+// this is equal to PropTypes.oneOfType([PropTypes.number,PropTypes.oneOf(["sm", "md", "lg"]),])
+function validateSize(props, propName, componentName) {
+  let value = props[propName];
+  if (typeof value === "string") {
+    if (["sm", "md", "lg"].indexOf(value) === -1) {
+      return validateFailing(propName, componentName);
+    }
+  } else if (typeof value === "number") {
+    return;
+  } else {
+    return validateFailing(propName, componentName);
+  }
+}
+
 Icon.propTypes = {
   name: PropTypes.oneOf(iconList),
   color: PropTypes.string,
@@ -83,18 +97,10 @@ Icon.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
   ]),
-  size: function (props, propName, componentName) {
-    let value = props[propName];
-    if (typeof value === "string") {
-      if (["sm", "md", "lg"].indexOf(value) === -1) {
-        return validateFailing(propName, componentName);
-      }
-    } else if (typeof value === "number") {
-      return;
-    } else {
-      return validateFailing(propName, componentName);
-    }
-  },
+  size: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.oneOf(["sm", "md", "lg"]),
+  ]),
 };
 Icon.defaultProps = {
   name: "unknown",

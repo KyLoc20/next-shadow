@@ -25,3 +25,14 @@ export declare type ButtonProps = {
   hoverContentColor?: string;
   borderRadius?: number;
 };
+export declare function IconButton(props: IconButtonProps): JSX.Element;
+export declare type IconButtonProps = {
+  children?: React.ReactNode;
+  size?: "sm" | "md" | "lg";
+  icon: string;
+  iconName?: string;
+  iconColor?: string;
+  iconViewBox?: string;
+  iconPath?: string[];
+  iconSize?: number | "sm" | "md" | "lg";
+};

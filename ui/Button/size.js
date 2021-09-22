@@ -1,9 +1,35 @@
+//Button
 const SizeMap = {
-    xsm: { height: 20, fontSize: 10, paddingY: 0, paddingX: 9 },
-    sm: { height: 28, fontSize: 12, paddingY: 0, paddingX: 12 },
-    md: { height: 36, fontSize: 14, paddingY: 0, paddingX: 16 },
-    lg: { height: 44, fontSize: 14, paddingY: 0, paddingX: 20 },
-    xlg: { height: 52, fontSize: 16, paddingY: 0, paddingX: 23 },
+    xsm: {
+        height: 20,
+        fontSize: 10,
+        paddingY: 0,
+        paddingX: 9
+    },
+    sm: {
+        height: 28,
+        fontSize: 12,
+        paddingY: 0,
+        paddingX: 12
+    },
+    md: {
+        height: 36,
+        fontSize: 14,
+        paddingY: 0,
+        paddingX: 16
+    },
+    lg: {
+        height: 44,
+        fontSize: 14,
+        paddingY: 0,
+        paddingX: 20
+    },
+    xlg: {
+        height: 52,
+        fontSize: 16,
+        paddingY: 0,
+        paddingX: 23
+    },
 };
 
 function getSize(type) {
@@ -14,4 +40,15 @@ function getSize(type) {
         padding: `${sizeSet["paddingY"]}px ${sizeSet["paddingX"]}px`,
     };
 }
-export { getSize }
+//IconButton
+const IconButtonSizeMap = {
+    sm: 44,
+    md: 48,
+    lg: 60,
+};
+
+const getIconButtonSize = (size) => size ? (IconButtonSizeMap[size] ? IconButtonSizeMap[size] : size) : 48
+export {
+    getSize,
+    getIconButtonSize
+}

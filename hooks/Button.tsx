@@ -37,7 +37,7 @@ const FACTORY: CustomButtonFactory = {
 };
 export function useCustomButton(which: CustomButtonType) {
   const customProps = FACTORY[which];
-  const RenderButton = (props: ButtonProps) => (
+  const renderButton = (props: ButtonProps) => (
     <Button
       variant={customProps.variant}
       width={customProps.width}
@@ -58,5 +58,6 @@ export function useCustomButton(which: CustomButtonType) {
       {props.children}
     </Button>
   );
-  return [RenderButton];
+  return [renderButton];
 }
+

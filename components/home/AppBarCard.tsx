@@ -1,7 +1,9 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 import { useCustomButton, CustomButtonType } from "@/hooks/Button";
+import { useClickable } from "@/hooks/Clickable";
 import { Icon } from "@/ui/Icon";
+import { IconButton } from "@/ui/Button";
 const BasicAppBar = styled("section")`
   position: fixed;
   display: flex;
@@ -54,19 +56,23 @@ export default function AppBarCard(props: AppBarProps) {
     "Analytics",
     "Commerce",
     "Enterprise",
-  ].map((item) => <Navigation key={item}>item</Navigation>);
-  const LearnButton = useCustomButton(CustomButtonType.Primary1)[0];
-  const GithubButton = <div></div>;
+  ].map((item) => <Navigation key={item}>{item}</Navigation>);
+  const [LearnButton] = useCustomButton(CustomButtonType.Primary1);
+  const handleClickGithub=(e:React.MouseEvent) => {
+    setTimeout(() => {
+      window.open("https://github.com/KyLoc20/next-shadow");
+    }, 200);
+  }
+  const [GithubButton] = useClickable(handleClickGithub,"rgb(105, 105, 105)","black");
   return (
     <Component className="app-bar">
       <Content>
         <Logo></Logo>
         {NavigationMenuItems}
         <LearnButton>Learn</LearnButton>
-        <Icon name="github"></Icon>
-        {/* {NavigationMenuItems}
-        
-        {GithubButton} */}
+        <GithubButton>
+          <Icon name="github" size={22}></Icon>
+        </GithubButton>
       </Content>
     </Component>
   );
