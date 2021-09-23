@@ -4,28 +4,92 @@ enum HTMLTag {
   div,
   span,
 }
-type TextComponent = (props: TextProps) => JSX.Element;
 type TextTagFactory = {
-  [key in HTMLTag]: TextComponent;
+  [key in HTMLTag]: (props: TextProps) => JSX.Element;
 };
 
 const TEXT_FACTORY: TextTagFactory = {
   [HTMLTag.div]: Text.Div,
   [HTMLTag.span]: Text.Span,
 };
-type CustomTextProps = {
-  fontSize: number;
-  fontWeight: number;
-  lineHeight: number;
-  letterSpacing: number;
-  color: string;
-  hoverColor: string;
-};
-function useCustomText(tagType: HTMLTag, props: CustomTextProps) {
+function useCustomText(tagType: HTMLTag, which: CustomTextType) {
+  const customTextProps = CUSTOM_FACTORY[which];
   const TextComponent = TEXT_FACTORY[tagType];
   const renderText = (props: TextProps) => {
-    <TextComponent>{props.children}</TextComponent>;
+    return (
+      <TextComponent
+        fontSize={customTextProps.fontSize}
+        fontWeight={customTextProps.fontWeight}
+        lineHeight={customTextProps.lineHeight}
+        letterSpacing={customTextProps.letterSpacing}
+        color={customTextProps.color}
+        hoverColor={customTextProps.hoverColor}
+      >
+        {props.children}
+      </TextComponent>
+    );
   };
   return [renderText];
 }
-export { HTMLTag, useCustomText };
+export { HTMLTag, CustomTextType, useCustomText };
+type CustomTextProps = {
+  fontSize?: number;
+  fontWeight?: number;
+  lineHeight?: number;
+  letterSpacing?: number;
+  color?: string;
+  hoverColor?: string;
+};
+enum CustomTextType {
+  Link1, //navigation height26
+  Button_h36_primary, //primary height36
+  Button_h45_primary, //primary height45
+  Button_h45_plain, //plain height45
+  Title_main,
+  Description_main,
+  Content1,
+}
+type CustomTextFactory = {
+  [key in CustomTextType]: CustomTextProps;
+};
+const CUSTOM_FACTORY: CustomTextFactory = {
+  [CustomTextType.Link1]: {
+    fontSize: 16,
+    fontWeight: 400,
+    lineHeight: 26,
+    color: "rgb(105, 105, 105)",
+  },
+  [CustomTextType.Button_h36_primary]: {
+    fontSize: 16,
+    fontWeight: 500,
+  },
+  [CustomTextType.Button_h45_primary]: {
+    fontSize: 16,
+    fontWeight: 400,
+    color: "#ffffff",
+  },
+  [CustomTextType.Button_h45_plain]: {
+    fontSize: 16,
+    fontWeight: 400,
+    color: "#696969",
+  },
+  [CustomTextType.Title_main]: {
+    fontSize: 100,
+    fontWeight: 800,
+    lineHeight: 100,
+    letterSpacing: -0.05,
+    color: "#111111",
+  },
+  [CustomTextType.Description_main]: {
+    fontSize: 20,
+    fontWeight: 400,
+    lineHeight: 32,
+    color: "#666666",
+  },
+  [CustomTextType.Content1]: {
+    fontSize: 16,
+    fontWeight: 400,
+    lineHeight: 26,
+    color: "rgb(105, 105, 105)",
+  },
+};

@@ -20,21 +20,7 @@ type CustomButtonProps = {
   disabled?: boolean;
   tile?: boolean;
 };
-enum CustomButtonType {
-  Primary1,
-}
-type CustomButtonFactory = {
-  [key in CustomButtonType]: CustomButtonProps;
-};
-const FACTORY: CustomButtonFactory = {
-  [CustomButtonType.Primary1]: {
-    variant: "plain",
-    height: 36,
-    padding: "4px 16px",
-    backgroundColor: "rgba(0, 118, 255, 0.9)",
-    borderRadius: 7,
-  },
-};
+
 function useCustomButton(which: CustomButtonType) {
   const customProps = FACTORY[which];
   const renderButton = (props: ButtonProps) => (
@@ -60,8 +46,24 @@ function useCustomButton(which: CustomButtonType) {
   );
   return [renderButton];
 }
-export {
-  useCustomButton,
-  CustomButtonType,
+export { useCustomButton, CustomButtonType };
+enum CustomButtonType {
+  Navigation_h36,
 }
-
+type CustomButtonFactory = {
+  [key in CustomButtonType]: CustomButtonProps;
+};
+const FACTORY: CustomButtonFactory = {
+  [CustomButtonType.Navigation_h36]: {
+    variant: "outlined",
+    height: 36,
+    padding: "4px 16px",
+    borderRadius: 7,
+    backgroundColor: "rgba(0, 118, 255, 0.9)",
+    hoverBackgroundColor: "transparent",
+    borderColor: "rgba(0,118,255,0.9)",
+    contentColor: "#fff",
+    hoverContentColor: "rgba(0,118,255,0.9)",
+    rippleDisabled: true,
+  },
+};

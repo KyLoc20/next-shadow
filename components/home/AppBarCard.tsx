@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { useCustomButton, CustomButtonType } from "@/hooks/Button";
 import { useClickable } from "@/hooks/Clickable";
 import { Icon } from "@/ui/Icon";
-import { IconButton } from "@/ui/Button";
+import { useCustomText, HTMLTag, CustomTextType } from "@/hooks/Text";
 const BasicAppBar = styled("section")`
   position: fixed;
   display: flex;
@@ -20,7 +20,6 @@ const Component = styled(BasicAppBar)`
   justify-content: center;
   height: 80px;
   background: #fff;
-  box-shadow: 0 0 1px 1px rgba(33, 41, 63, 0.1);
 `;
 const Content = styled.div`
   display: flex;
@@ -44,11 +43,15 @@ function Logo() {
     </span>
   );
 }
-const Navigation = styled.a``;
+const Navigation = styled.a`
+  margin-left: 16px;
+`;
 type AppBarProps = {
   children?: React.ReactNode;
 };
 export default function AppBarCard(props: AppBarProps) {
+  const [LinkText] = useCustomText(HTMLTag.span, CustomTextType.Link1);
+  const [NavigationButtonText] = useCustomText(HTMLTag.span, CustomTextType.Button_h36_primary);
   const NavigationMenuItems = [
     "Showcase",
     "Docs",
@@ -56,20 +59,28 @@ export default function AppBarCard(props: AppBarProps) {
     "Analytics",
     "Commerce",
     "Enterprise",
-  ].map((item) => <Navigation key={item}>{item}</Navigation>);
-  const [LearnButton] = useCustomButton(CustomButtonType.Primary1);
-  const handleClickGithub=(e:React.MouseEvent) => {
+  ].map((item) => (
+    <Navigation key={item}>
+      <LinkText>{item}</LinkText>
+    </Navigation>
+  ));
+  const [LearnButton] = useCustomButton(CustomButtonType.Navigation_h36);
+  const handleClickGithub = (e: React.MouseEvent) => {
     setTimeout(() => {
       window.open("https://github.com/KyLoc20/next-shadow");
     }, 200);
-  }
-  const [GithubButton] = useClickable(handleClickGithub,"rgb(105, 105, 105)","black");
+  };
+  const [GithubButton] = useClickable(
+    handleClickGithub,
+    "rgb(105, 105, 105)",
+    "black"
+  );
   return (
     <Component className="app-bar">
       <Content>
         <Logo></Logo>
         {NavigationMenuItems}
-        <LearnButton>Learn</LearnButton>
+        <LearnButton><NavigationButtonText>Learn</NavigationButtonText></LearnButton>
         <GithubButton>
           <Icon name="github" size={22}></Icon>
         </GithubButton>
