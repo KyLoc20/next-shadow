@@ -51,7 +51,6 @@ type AppBarProps = {
 };
 export default function AppBarCard(props: AppBarProps) {
   const [LinkText] = useCustomText(HTMLTag.span, CustomTextType.Link1);
-  const [NavigationButtonText] = useCustomText(HTMLTag.span, CustomTextType.Button_h36_primary);
   const NavigationMenuItems = [
     "Showcase",
     "Docs",
@@ -80,7 +79,7 @@ export default function AppBarCard(props: AppBarProps) {
       <Content>
         <Logo></Logo>
         {NavigationMenuItems}
-        <LearnButton><NavigationButtonText>Learn</NavigationButtonText></LearnButton>
+        <LearnButton>Learn</LearnButton>
         <GithubButton>
           <Icon name="github" size={22}></Icon>
         </GithubButton>

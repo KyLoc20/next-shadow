@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Button, ButtonProps } from "@/ui/Button";
+import { Text, TextProps } from "@/components/generic/Text";
 type ButtonVariant = "plain" | "text" | "outlined";
 type ButtonColor = string;
 type ButtonPadding = string;
@@ -19,32 +20,64 @@ type CustomButtonProps = {
   rippleDisabled?: boolean;
   disabled?: boolean;
   tile?: boolean;
+  content?: CustomButtonContentProps;
 };
-
+type CustomButtonContentProps = {
+  fontSize?: number;
+  fontWeight?: number;
+  lineHeight?: number;
+  letterSpacing?: number;
+  //the color is decided by contentColor&hoverContentColor from [CustomButtonProps]
+};
+const genPropsForCustomButton = (
+  props: CustomButtonProps
+): CustomButtonProps => {
+  return {
+    variant: props.variant,
+    width: props.width,
+    height: props.height,
+    padding: props.padding,
+    backgroundColor: props.backgroundColor,
+    hoverBackgroundColor: props.hoverBackgroundColor,
+    borderColor: props.borderColor,
+    hoverBorderColor: props.hoverBorderColor,
+    contentColor: props.contentColor,
+    hoverContentColor: props.hoverContentColor,
+    borderRadius: props.borderRadius,
+    depressed: props.depressed || true,
+    rippleDisabled: props.rippleDisabled,
+    disabled: props.disabled,
+    tile: props.tile,
+  };
+};
 function useCustomButton(which: CustomButtonType) {
   const customProps = FACTORY[which];
-  const renderButton = (props: ButtonProps) => (
-    <Button
-      variant={customProps.variant}
-      width={customProps.width}
-      height={customProps.height}
-      padding={customProps.padding}
-      backgroundColor={customProps.backgroundColor}
-      hoverBackgroundColor={customProps.hoverBackgroundColor}
-      borderColor={customProps.borderColor}
-      hoverBorderColor={customProps.hoverBorderColor}
-      contentColor={customProps.contentColor}
-      hoverContentColor={customProps.hoverContentColor}
-      borderRadius={customProps.borderRadius}
-      depressed={customProps.depressed || true}
-      rippleDisabled={customProps.rippleDisabled}
-      disabled={customProps.disabled}
-      tile={customProps.tile}
-    >
-      {props.children}
-    </Button>
-  );
-  return [renderButton];
+  if (customProps.content != null) {
+    const customContentProps = customProps.content;
+    const RenderContentText = (props: TextProps) => (
+      <Text.Span
+        fontSize={customContentProps.fontSize}
+        fontWeight={customContentProps.fontWeight}
+        lineHeight={customContentProps.lineHeight}
+        letterSpacing={customContentProps.letterSpacing}
+      >
+        {props.children}
+      </Text.Span>
+    );
+    const renderButtonWithContent = (props: ButtonProps) => (
+      <Button {...genPropsForCustomButton(customProps)}>
+        <RenderContentText>{props.children}</RenderContentText>
+      </Button>
+    );
+    return [renderButtonWithContent];
+  } else {
+    const renderButton = (props: ButtonProps) => (
+      <Button {...genPropsForCustomButton(customProps)}>
+        {props.children}
+      </Button>
+    );
+    return [renderButton];
+  }
 }
 export { useCustomButton, CustomButtonType };
 enum CustomButtonType {
@@ -65,5 +98,10 @@ const FACTORY: CustomButtonFactory = {
     contentColor: "#fff",
     hoverContentColor: "rgba(0,118,255,0.9)",
     rippleDisabled: true,
+    content: {
+      fontWeight: 500,
+      fontSize: 16,
+      lineHeight: 26,
+    },
   },
 };
