@@ -1,16 +1,70 @@
 import * as React from "react";
 import styled from "@emotion/styled";
+import { useCustomText, HTMLTag, CustomTextType } from "@/hooks/Text";
+import { Link } from "../generic/Link";
 const Component = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
-width: 100%;
-height: 60px;
-background:rgba(0,4,32,0.1);
+  display: flex;
+  margin: 0 auto;
+  padding: 0 16px;
+  align-items: flex-end;
+  justify-content: center;
+  width: 992px;
+  height: 60px;
 `;
 type TopNewsProps = {
-    children?: React.ReactNode;
+  children?: React.ReactNode;
 };
-export default function TopNewsCard(props:TopNewsProps){
-    return <Component>TopNewsCard</Component>
+const Paper = styled.div`
+  background: #fafafa;
+  border: 2px solid #eaeaea;
+  border-radius: 8px;
+  padding: 10px;
+`;
+const Content = styled.div`
+  display: flex;
+  align-items: center;
+  height: 25px;
+  letter-spacing: 0.02em;
+`;
+const Badge = styled.div`
+  margin-right: 5px;
+  padding: 1px 8px;
+  background: linear-gradient(
+    90deg,
+    rgb(237, 98, 146) 25%,
+    rgb(237, 87, 96) 87.5%
+  );
+  border-radius: 5px;
+`;
+export default function TopNewsCard(props: TopNewsProps) {
+  const [BadgeText] = useCustomText(HTMLTag.span, CustomTextType.Badge);
+  const [HighlightText] = useCustomText(
+    HTMLTag.span,
+    CustomTextType.Content_highlight14
+  );
+  const [ContentText] = useCustomText(
+    HTMLTag.span,
+    CustomTextType.Content_normal14
+  );
+  return (
+    <Component>
+      <Paper>
+        <Link href="https://nextjs.org/conf">
+          <Content>
+            <Badge>
+              <BadgeText>NEW</BadgeText>
+            </Badge>
+            <HighlightText>Next.js Conf: </HighlightText>
+            <ContentText></ContentText>
+            <ContentText>
+              {
+                " Celebrate 5 years of Next.js at our Global Community Conference."
+              }
+            </ContentText>
+            <HighlightText>Claim Ticket →</HighlightText>
+          </Content>
+        </Link>
+      </Paper>
+    </Component>
+  );
 }

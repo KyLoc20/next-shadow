@@ -15,3 +15,4 @@ function Link(props: LinkProps) {
   const [Component] = useClickable(handleGotoLink);
   return <Component>{props.children}</Component>;
 }
+export { Link };

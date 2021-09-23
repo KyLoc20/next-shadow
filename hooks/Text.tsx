@@ -47,7 +47,9 @@ enum CustomTextType {
   Button_h45_plain, //plain height45
   Title_main,
   Description_main,
-  Content1,
+  Content_normal14,
+  Content_highlight14,
+  Badge,
 }
 type CustomTextFactory = {
   [key in CustomTextType]: CustomTextProps;
@@ -86,10 +88,20 @@ const CUSTOM_FACTORY: CustomTextFactory = {
     lineHeight: 32,
     color: "#666666",
   },
-  [CustomTextType.Content1]: {
-    fontSize: 16,
+  [CustomTextType.Content_normal14]: {
+    fontSize: 14,
     fontWeight: 400,
-    lineHeight: 26,
-    color: "rgb(105, 105, 105)",
+    color: "#111111",
+  },
+  [CustomTextType.Content_highlight14]: {
+    fontSize: 14,
+    fontWeight: 600,
+    color: "#111111",
+  },
+  [CustomTextType.Badge]: {
+    fontSize: 12.6,
+    fontWeight: 600,
+    lineHeight: 21,
+    color: "#fff",
   },
 };
