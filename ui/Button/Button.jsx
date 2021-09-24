@@ -71,10 +71,19 @@ function Button(props) {
     [props.variant, props.loading, props.disabled]
   );
   const computedBoxShadow = React.useMemo(() => {
-    if (props.variant === "plain" && !props.disabled && !props.depressed)
+    if (props.boxShadow || props.hoverBoxShadow) {
+      return isHovering ? props.hoverBoxShadow : props.boxShadow;
+    } else if (props.variant === "plain" && !props.disabled && !props.depressed)
       return "0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12)";
     else return null;
-  }, [props.variant, props.disabled, props.depressed]);
+  }, [
+    isHovering,
+    props.boxShadow,
+    props.hoverBoxShadow,
+    props.variant,
+    props.disabled,
+    props.depressed,
+  ]);
   const computedSize = React.useMemo(() => {
     const sizeStyles = getSize(props.size);
     if (props.height) sizeStyles["height"] = `${props.height}px`;
@@ -215,6 +224,8 @@ Button.propTypes = {
   hoverBorderColor: PropTypes.string,
   contentColor: PropTypes.string,
   hoverContentColor: PropTypes.string,
+  boxShadow: PropTypes.string,
+  hoverBoxShadow: PropTypes.string,
   borderRadius: PropTypes.number,
 };
 Button.defaultProps = {

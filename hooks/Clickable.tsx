@@ -6,7 +6,8 @@ type BaseProps = {
 };
 type handlerClick = (e: React.MouseEvent) => void;
 //the change of color will not be heritaged by currentColor
-const Wrapper = styled.div`
+//  user-select: none;
+const Wrapper = styled.span`
   cursor: pointer;
   transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 `;

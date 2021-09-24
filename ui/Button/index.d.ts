@@ -23,6 +23,8 @@ export declare type ButtonProps = {
   hoverBorderColor?: string;
   contentColor?: string;
   hoverContentColor?: string;
+  boxShadow?: string;
+  hoverBoxShadow?: string;
   borderRadius?: number;
 };
 export declare function IconButton(props: IconButtonProps): JSX.Element;

@@ -87,5 +87,3 @@ export default function MainHeaderCard(props: MainHeaderProps) {
     </Component>
   );
 }
-// The React Framework
-// for Production

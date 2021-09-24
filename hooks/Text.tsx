@@ -1,11 +1,11 @@
 import * as React from "react";
-import { Text, TextProps } from "@/components/generic/Text";
+import * as Text from "@/components/generic/Text";
 enum HTMLTag {
   div,
   span,
 }
 type TextTagFactory = {
-  [key in HTMLTag]: (props: TextProps) => JSX.Element;
+  [key in HTMLTag]: (props: Text.TextProps) => JSX.Element;
 };
 
 const TEXT_FACTORY: TextTagFactory = {
@@ -15,7 +15,7 @@ const TEXT_FACTORY: TextTagFactory = {
 function useCustomText(tagType: HTMLTag, which: CustomTextType) {
   const customTextProps = CUSTOM_FACTORY[which];
   const TextComponent = TEXT_FACTORY[tagType];
-  const renderText = (props: TextProps) => {
+  const renderText = (props: Text.TextProps) => {
     return (
       <TextComponent
         fontSize={customTextProps.fontSize}
@@ -42,13 +42,11 @@ type CustomTextProps = {
 };
 enum CustomTextType {
   Link1, //navigation height26
-  Button_h36_primary, //primary height36
-  Button_h45_primary, //primary height45
-  Button_h45_plain, //plain height45
   Title_main,
   Description_main,
   Content_normal14,
   Content_highlight14,
+  Content_normal16,
   Badge,
 }
 type CustomTextFactory = {
@@ -59,20 +57,6 @@ const CUSTOM_FACTORY: CustomTextFactory = {
     fontSize: 16,
     fontWeight: 400,
     lineHeight: 26,
-    color: "rgb(105, 105, 105)",
-  },
-  [CustomTextType.Button_h36_primary]: {
-    fontSize: 16,
-    fontWeight: 500,
-  },
-  [CustomTextType.Button_h45_primary]: {
-    fontSize: 16,
-    fontWeight: 400,
-    color: "#ffffff",
-  },
-  [CustomTextType.Button_h45_plain]: {
-    fontSize: 16,
-    fontWeight: 400,
     color: "#696969",
   },
   [CustomTextType.Title_main]: {
@@ -92,6 +76,12 @@ const CUSTOM_FACTORY: CustomTextFactory = {
     fontSize: 14,
     fontWeight: 400,
     color: "#111111",
+  },
+  [CustomTextType.Content_normal16]: {
+    fontSize: 16,
+    fontWeight: 400,
+    lineHeight: 20,
+    color: "#696969",
   },
   [CustomTextType.Content_highlight14]: {
     fontSize: 14,

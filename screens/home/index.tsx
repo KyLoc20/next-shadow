@@ -3,7 +3,7 @@ import Head from "next/head";
 import TopBannerCard from "@/components/home/TopBannerCard";
 import AppBarCard from "@/components/home/AppBarCard";
 import TopNewsCard from "@/components/home/TopNewsCard";
-import MainContentCard from "@/components/home/MainContentCard";
+import MainHeaderCard from "@/components/home/MainHeaderCard";
 import WhyNextCard from "@/components/home/WhyNextCard";
 import CaseDisplayCard from "@/components/home/CaseDisplayCard";
 import CaseStudyEntranceCard from "@/components/home/CaseStudyEntranceCard";
@@ -29,7 +29,7 @@ export default function HomaPage(props: any) {
       <TopBannerCard></TopBannerCard>
       <AppBarCard></AppBarCard>
       <TopNewsCard></TopNewsCard>
-      <MainContentCard></MainContentCard>
+      <MainHeaderCard></MainHeaderCard>
       <WhyNextCard></WhyNextCard>
       <CaseDisplayCard></CaseDisplayCard>
       <CaseStudyEntranceCard></CaseStudyEntranceCard>
