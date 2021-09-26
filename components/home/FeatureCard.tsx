@@ -42,18 +42,19 @@ export default function FeatureCard(props: FeatureProps) {
   const [LinkText] = useCustomText(HTMLTag.span, CustomTextType.Link_primary14);
   return (
     <Component>
-      <Title>
-        <TitleText>{props.title}</TitleText>
-      </Title>
-      <Description>
-        <DescriptionText>{props.description}</DescriptionText>
-      </Description>
-
-      <Documentation className="doc">
-        <Link href={props.docLink}>
-          <LinkText>Documentation →</LinkText>
-        </Link>
-      </Documentation>
+      <Link href={props.docLink}>
+        <Title>
+          <TitleText>{props.title}</TitleText>
+        </Title>
+        <Description>
+          <DescriptionText>{props.description}</DescriptionText>
+        </Description>
+        <Documentation className="doc">
+          <Link href={props.docLink}>
+            <LinkText>Documentation →</LinkText>
+          </Link>
+        </Documentation>
+      </Link>
     </Component>
   );
 }

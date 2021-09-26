@@ -38,10 +38,15 @@ const License = styled.span`
   padding: 0 8px;
 `;
 export default function MainHeaderCard(props: MainHeaderProps) {
-  const [TitleText] = useCustomText(HTMLTag.div, CustomTextType.Title_main);
+  const [TitleText] = useCustomText(
+    HTMLTag.div,
+    CustomTextType.Title_main,
+    "center"
+  );
   const [DescriptionText] = useCustomText(
     HTMLTag.div,
-    CustomTextType.Description_main
+    CustomTextType.Description_main,
+    "center"
   );
   const [StartLearningButton] = useCustomButton(
     CustomButtonType.Content_h45_primary

@@ -7,12 +7,16 @@ enum HTMLTag {
 type TextTagFactory = {
   [key in HTMLTag]: (props: Text.TextProps) => JSX.Element;
 };
-
+type TextAlign = "left" | "right" | "center";
 const TEXT_FACTORY: TextTagFactory = {
   [HTMLTag.div]: Text.Div,
   [HTMLTag.span]: Text.Span,
 };
-function useCustomText(tagType: HTMLTag, which: CustomTextType) {
+function useCustomText(
+  tagType: HTMLTag,
+  which: CustomTextType,
+  textAlign?: TextAlign
+) {
   const customTextProps = CUSTOM_FACTORY[which];
   const TextComponent = TEXT_FACTORY[tagType];
   const renderText = (props: Text.TextProps) => {
@@ -25,6 +29,7 @@ function useCustomText(tagType: HTMLTag, which: CustomTextType) {
         color={customTextProps.color}
         hoverColor={customTextProps.hoverColor}
         hoverUnderlined={customTextProps.hoverUnderlined}
+        textAlign={textAlign}
       >
         {props.children}
       </TextComponent>
@@ -43,7 +48,7 @@ type CustomTextProps = {
   hoverUnderlined?: boolean;
 };
 enum CustomTextType {
-  Link1, //navigation height26
+  Link_navigation16,
   Link_primary14,
   Title_main,
   Title_main32,
@@ -59,7 +64,7 @@ type CustomTextFactory = {
   [key in CustomTextType]: CustomTextProps;
 };
 const CUSTOM_FACTORY: CustomTextFactory = {
-  [CustomTextType.Link1]: {
+  [CustomTextType.Link_navigation16]: {
     fontSize: 16,
     fontWeight: 400,
     lineHeight: 26,

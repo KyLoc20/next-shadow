@@ -50,7 +50,7 @@ type AppBarProps = {
   children?: React.ReactNode;
 };
 export default function AppBarCard(props: AppBarProps) {
-  const [LinkText] = useCustomText(HTMLTag.span, CustomTextType.Link1);
+  const [LinkText] = useCustomText(HTMLTag.span, CustomTextType.Link_navigation16);
   const NavigationMenuItems = [
     "Showcase",
     "Docs",

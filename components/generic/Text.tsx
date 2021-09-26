@@ -23,6 +23,7 @@ export type TextProps = {
   color?: string;
   hoverColor?: string; //todo
   hoverUnderlined?: boolean;
+  textAlign?:"left" | "right" | "center";
 };
 //genStyle > genCSS
 const genStyle = (props: TextProps): React.CSSProperties => {
@@ -31,6 +32,7 @@ const genStyle = (props: TextProps): React.CSSProperties => {
     fontWeight: props.fontWeight,
     lineHeight: parseNumberWithPx(props.lineHeight),
     letterSpacing: parseNumberWithEm(props.letterSpacing),
+    textAlign:props.textAlign
   };
 };
 const genCSS = (props: TextProps) => css`
