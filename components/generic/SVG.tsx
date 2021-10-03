@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "@emotion/styled";
 type SVGBase = {
   fill?: string;
-  hoverFill?: string;
+  hoverFill?: string;//todo
 };
 export type GroupProps = {
   transform?: string;

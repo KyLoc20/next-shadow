@@ -20,10 +20,17 @@ const move = keyframes`
 type WaveSlideProps = {
   height: number;
 };
+const WaveSlideWrapper = styled.div`
+  position: relative;
+  height: 80px;
+`;
 const WaveSlide = styled.div`
+  position: absolute; //must
+  left: 0;
+  top: 0;
   display: flex;
   height: ${(props: WaveSlideProps) => props.height}px;
-  animation: ${move} 10s linear infinite;
+  animation: ${move} 100s linear infinite;
 `;
 
 const CaseWrapper = styled.div`
@@ -31,6 +38,10 @@ const CaseWrapper = styled.div`
   justify-content: center;
   padding: 0 40px;
   opacity: 0.25;
+  transition: opacity 0.2s ease;
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 type CaseProps = {
@@ -86,14 +97,18 @@ export default function CaseDisplayCard(props: CaseDisplayProps) {
   ].map((caseProps) => <Case {...caseProps}></Case>);
   return (
     <Component>
-      <WaveSlide height={80}>
-        {caseItems}
-        {caseItems}
-      </WaveSlide>
-      <WaveSlide height={80}>
-        {caseItems2}
-        {caseItems2}
-      </WaveSlide>
+      <WaveSlideWrapper>
+        <WaveSlide height={80}>
+          {caseItems}
+          {caseItems}
+        </WaveSlide>
+      </WaveSlideWrapper>
+      <WaveSlideWrapper>
+        <WaveSlide height={80}>
+          {caseItems2}
+          {caseItems2}
+        </WaveSlide>
+      </WaveSlideWrapper>
     </Component>
   );
 }
