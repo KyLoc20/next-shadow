@@ -1,9 +1,6 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 import { jsx, css, keyframes } from "@emotion/react";
-import { useCustomText, HTMLTag, CustomTextType } from "@/hooks/Text";
-import { useCustomButton, CustomButtonType } from "@/hooks/Button";
-import { Link } from "../generic/Link";
 import * as SVG from "@/components/generic/SVG";
 const Component = styled.div`
   position: relative;
@@ -59,8 +56,8 @@ function Case(props: CaseProps) {
         height={`${props.height}px`}
         viewBox={props.viewBox}
       >
-        {props.group.map((group) => (
-          <SVG.Group {...group}></SVG.Group>
+        {props.group.map((group, index) => (
+          <SVG.Group {...group} key={index}></SVG.Group>
         ))}
       </svg>
     </CaseWrapper>
@@ -83,7 +80,7 @@ export default function CaseDisplayCard(props: CaseDisplayProps) {
     CaseTwitch,
     CaseSesame,
     CasePling,
-  ].map((caseProps) => <Case {...caseProps}></Case>);
+  ].map((caseProps, index) => <Case {...caseProps} key={index}></Case>);
   const caseItems2 = [
     CaseAuth0,
     CaseTencent,
@@ -94,7 +91,7 @@ export default function CaseDisplayCard(props: CaseDisplayProps) {
     CaseCoinbase,
     CaseUber,
     CaseInvision,
-  ].map((caseProps) => <Case {...caseProps}></Case>);
+  ].map((caseProps, index) => <Case {...caseProps} key={index}></Case>);
   return (
     <Component>
       <WaveSlideWrapper>

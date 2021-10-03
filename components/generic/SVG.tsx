@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "@emotion/styled";
 type SVGBase = {
   fill?: string;
-  hoverFill?: string;//todo
+  hoverFill?: string; //todo
 };
 export type GroupProps = {
   transform?: string;
@@ -15,15 +15,24 @@ export type GroupProps = {
 function Group(props: GroupProps) {
   return (
     <g transform={props.transform} fill={props.fill}>
-      {props.path && props.path.map((path) => <Path {...path}></Path>)}
+      {props.path &&
+        props.path.map((path, index) => <Path {...path} key={index}></Path>)}
       {props.circle &&
-        props.circle.map((circle) => <Circle {...circle}></Circle>)}
+        props.circle.map((circle, index) => (
+          <Circle {...circle} key={index}></Circle>
+        ))}
       {props.ellipse &&
-        props.ellipse.map((ellipse) => <Ellipse {...ellipse}></Ellipse>)}
+        props.ellipse.map((ellipse, index) => (
+          <Ellipse {...ellipse} key={index}></Ellipse>
+        ))}
       {props.polygon &&
-        props.polygon.map((polygon) => <Polygon {...polygon}></Polygon>)}
+        props.polygon.map((polygon, index) => (
+          <Polygon {...polygon} key={index}></Polygon>
+        ))}
       {props.group &&
-        props.group.map((subGroup) => <Group {...subGroup}></Group>)}
+        props.group.map((subGroup, index) => (
+          <Group {...subGroup} key={index}></Group>
+        ))}
     </g>
   );
 }
