@@ -7,7 +7,7 @@ import MainHeaderCard from "@/components/home/MainHeaderCard";
 import WhyNextCard from "@/components/home/WhyNextCard";
 import CaseDisplayCard from "@/components/home/CaseDisplayCard";
 import CaseStudyEntranceCard from "@/components/home/CaseStudyEntranceCard";
-import FamousCaseDisplayCard from "@/components/home/FamousCaseDisplayCard";
+import WhoUsingNextCard from "@/components/home/WhoUsingNextCard";
 import LearnNextCard from "@/components/home/LearnNextCard";
 import SubscribeCard from "@/components/home/SubscribeCard";
 import FooterCard from "@/components/home/FooterCard";
@@ -32,8 +32,7 @@ export default function HomaPage(props: any) {
       <MainHeaderCard></MainHeaderCard>
       <WhyNextCard></WhyNextCard>
       <CaseDisplayCard></CaseDisplayCard>
-      <CaseStudyEntranceCard></CaseStudyEntranceCard>
-      <FamousCaseDisplayCard></FamousCaseDisplayCard>
+      <WhoUsingNextCard></WhoUsingNextCard>
       <LearnNextCard></LearnNextCard>
       <SubscribeCard></SubscribeCard>
       <FooterCard></FooterCard>
