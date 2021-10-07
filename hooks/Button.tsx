@@ -89,6 +89,7 @@ enum CustomButtonType {
   Content_h45_primary,
   Content_h45_plain,
   Content_h34_primary_text,
+  Content_h45_default,
 }
 type CustomButtonFactory = {
   [key in CustomButtonType]: CustomButtonProps;
@@ -125,6 +126,24 @@ const FACTORY: CustomButtonFactory = {
     content: {
       fontSize: 16,
       fontWeight: 400,
+    },
+  },
+
+  [CustomButtonType.Content_h45_default]: {
+    variant: "outlined",
+    width: 240,
+    height: 45,
+    padding: "4px 8px",
+    borderRadius: 7,
+    backgroundColor: "#000",
+    hoverBackgroundColor: "#fff",
+    contentColor: "#fff",
+    hoverContentColor: "#000",
+    rippleDisabled: true,
+    content: {
+      fontSize: 16,
+      fontWeight: 500,
+      lineHeight: 26,
     },
   },
   [CustomButtonType.Content_h45_plain]: {

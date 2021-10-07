@@ -1,12 +1,15 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 type SVGBase = {
+  stroke?: string;
+  strokeWidth?: number; //todo
   fill?: string;
   hoverFill?: string; //todo
 };
 export type GroupProps = {
   transform?: string;
   path?: PathProps[];
+  rect?: RectProps[];
   circle?: CircleProps[];
   ellipse?: EllipseProps[];
   polygon?: PolygonProps[];
@@ -14,9 +17,15 @@ export type GroupProps = {
 } & SVGBase;
 function Group(props: GroupProps) {
   return (
-    <g transform={props.transform} fill={props.fill}>
+    <g
+      transform={props.transform}
+      fill={props.fill}
+      stroke={props.stroke ? props.stroke : "currentColor"}
+    >
       {props.path &&
         props.path.map((path, index) => <Path {...path} key={index}></Path>)}
+      {props.rect &&
+        props.rect.map((rect, index) => <Rect {...rect} key={index}></Rect>)}
       {props.circle &&
         props.circle.map((circle, index) => (
           <Circle {...circle} key={index}></Circle>
@@ -59,6 +68,28 @@ function Ellipse(props: EllipseProps) {
     />
   );
 }
+
+export type RectProps = {
+  width: number;
+  height: number;
+  cx: number;
+  cy: number;
+  rx?: number;
+  ry?: number;
+} & SVGBase;
+function Rect(props: RectProps) {
+  return (
+    <rect
+      width={props.width}
+      height={props.height}
+      cx={props.cx}
+      cy={props.cy}
+      rx={props.rx}
+      ry={props.ry}
+      fill={props.fill}
+    />
+  );
+}
 export type CircleProps = {
   cx: number;
   cy: number;
@@ -74,4 +105,4 @@ function Polygon(props: PolygonProps) {
   return <polygon points={props.points} fill={props.fill} />;
 }
 
-export { Group, Path, Ellipse, Polygon, Circle };
+export { Group, Path, Ellipse, Polygon, Rect, Circle };

@@ -57,6 +57,7 @@ enum CustomTextType {
   Content_normal14,
   Content_highlight14,
   Content_normal16,
+  Content_default16,
   Content_highlight18,
   Badge,
 }
@@ -112,6 +113,13 @@ const CUSTOM_FACTORY: CustomTextFactory = {
     fontWeight: 400,
     lineHeight: 20,
     color: "#696969",
+  },
+
+  [CustomTextType.Content_default16]: {
+    fontSize: 16,
+    fontWeight: 400,
+    lineHeight: 28,
+    color: "#111111",
   },
   [CustomTextType.Content_highlight14]: {
     fontSize: 14,
