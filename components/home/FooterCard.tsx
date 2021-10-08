@@ -49,9 +49,9 @@ function NavigationCard(props: NavigationProps) {
   );
 
   const navigationItems = props.items.map((item, index) => (
-    <Link href={item.link}>
+    <Link href={item.link} key={index}>
       <p>
-        <NavigationText key={index}>{item.name}</NavigationText>
+        <NavigationText>{item.name}</NavigationText>
       </p>
     </Link>
   ));
