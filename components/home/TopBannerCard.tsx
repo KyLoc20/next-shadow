@@ -3,22 +3,6 @@ import styled from "@emotion/styled";
 import { useCustomText, HTMLTag, CustomTextType } from "@/hooks/Text";
 import { Link } from "../generic/Link";
 import * as SVG from "@/components/generic/SVG";
-const Component = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 50px;
-  background: #000;
-`;
-const Content = styled.div`
-  width: 100%;
-  max-width: 1024px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0 auto;
-  padding: 0 16px;
-`;
 type TopBannerProps = {
   children?: React.ReactNode;
 };
@@ -41,7 +25,22 @@ export default function TopBannerCard(props: TopBannerProps) {
     </Component>
   );
 }
-
+const Component = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  background: #000;
+`;
+const Content = styled.div`
+  width: 100%;
+  max-width: 1024px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 0 16px;
+`;
 const VercelSVG = {
   path: [
     {
