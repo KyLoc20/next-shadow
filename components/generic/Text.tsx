@@ -9,6 +9,9 @@ const BasicText = styled.div`
 const DivComponent = BasicText;
 const SpanComponent = styled(BasicText.withComponent("span"))``;
 const HeadingOneComponent = styled(BasicText.withComponent("h1"))``;
+const HeadingTwoComponent = styled(BasicText.withComponent("h2"))``;
+const HeadingThreeComponent = styled(BasicText.withComponent("h3"))``;
+const HeadingFourComponent = styled(BasicText.withComponent("h4"))``;
 const ParagraphComponent = styled(BasicText.withComponent("p"))``;
 const parseNumberWithPx = (v: number | undefined) =>
   v != null ? `${v}px` : undefined;
@@ -23,7 +26,7 @@ export type TextProps = {
   color?: string;
   hoverColor?: string; //todo
   hoverUnderlined?: boolean;
-  textAlign?:"left" | "right" | "center";
+  textAlign?: "left" | "right" | "center";
 };
 //genStyle > genCSS
 const genStyle = (props: TextProps): React.CSSProperties => {
@@ -32,7 +35,7 @@ const genStyle = (props: TextProps): React.CSSProperties => {
     fontWeight: props.fontWeight,
     lineHeight: parseNumberWithPx(props.lineHeight),
     letterSpacing: parseNumberWithEm(props.letterSpacing),
-    textAlign:props.textAlign
+    textAlign: props.textAlign,
   };
 };
 const genCSS = (props: TextProps) => css`
@@ -61,6 +64,27 @@ export function HeadingOne(props: TextProps) {
     <HeadingOneComponent style={genStyle(props)} css={genCSS(props)}>
       {props.children}
     </HeadingOneComponent>
+  );
+}
+export function HeadingTwo(props: TextProps) {
+  return (
+    <HeadingTwoComponent style={genStyle(props)} css={genCSS(props)}>
+      {props.children}
+    </HeadingTwoComponent>
+  );
+}
+export function HeadingThree(props: TextProps) {
+  return (
+    <HeadingThreeComponent style={genStyle(props)} css={genCSS(props)}>
+      {props.children}
+    </HeadingThreeComponent>
+  );
+}
+export function HeadingFour(props: TextProps) {
+  return (
+    <HeadingFourComponent style={genStyle(props)} css={genCSS(props)}>
+      {props.children}
+    </HeadingFourComponent>
   );
 }
 export function Paragraph(props: TextProps) {

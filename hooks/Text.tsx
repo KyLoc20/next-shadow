@@ -3,6 +3,11 @@ import * as Text from "@/components/generic/Text";
 enum HTMLTag {
   div,
   span,
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
 }
 type TextTagFactory = {
   [key in HTMLTag]: (props: Text.TextProps) => JSX.Element;
@@ -11,6 +16,11 @@ type TextAlign = "left" | "right" | "center";
 const TEXT_FACTORY: TextTagFactory = {
   [HTMLTag.div]: Text.Div,
   [HTMLTag.span]: Text.Span,
+  [HTMLTag.p]: Text.Paragraph,
+  [HTMLTag.h1]: Text.HeadingOne,
+  [HTMLTag.h2]: Text.HeadingTwo,
+  [HTMLTag.h3]: Text.HeadingThree,
+  [HTMLTag.h4]: Text.HeadingFour,
 };
 function useCustomText(
   tagType: HTMLTag,
@@ -48,12 +58,16 @@ type CustomTextProps = {
   hoverUnderlined?: boolean;
 };
 enum CustomTextType {
+  //theme default dark light primary
   Link_navigation16,
+  Link_navigation14,
   Link_primary14,
   Title_main,
   Title_main32,
   Title_main16,
+  Title_default14,
   Description_main,
+  Content_light12,
   Content_normal14,
   Content_highlight14,
   Content_normal16,
@@ -70,6 +84,13 @@ const CUSTOM_FACTORY: CustomTextFactory = {
     fontWeight: 400,
     lineHeight: 26,
     color: "#696969", //rgb(105, 105, 105)
+  },
+  [CustomTextType.Link_navigation14]: {
+    fontSize: 14,
+    fontWeight: 400,
+    lineHeight: 23,
+    color: "#8c8c8c",
+    hoverColor: "#111;",
   },
   [CustomTextType.Link_primary14]: {
     fontSize: 14,
@@ -97,11 +118,21 @@ const CUSTOM_FACTORY: CustomTextFactory = {
     lineHeight: 26,
     color: "#696969",
   },
+  [CustomTextType.Title_default14]: {
+    fontSize: 14,
+    fontWeight: 500,
+    color: "#111111",
+  },
   [CustomTextType.Description_main]: {
     fontSize: 20,
     fontWeight: 400,
     lineHeight: 32,
     color: "#666666",
+  },
+  [CustomTextType.Content_light12]: {
+    fontSize: 12.6,
+    fontWeight: 400,
+    color: "#8c8c8c",
   },
   [CustomTextType.Content_normal14]: {
     fontSize: 14,
