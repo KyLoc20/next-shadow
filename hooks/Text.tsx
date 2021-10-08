@@ -58,9 +58,10 @@ type CustomTextProps = {
   hoverUnderlined?: boolean;
 };
 enum CustomTextType {
-  //theme default dark light primary
+  //theme default dark light primary white
   Link_navigation16,
   Link_navigation14,
+  Link_white16,
   Link_primary14,
   Title_main,
   Title_main32,
@@ -98,6 +99,12 @@ const CUSTOM_FACTORY: CustomTextFactory = {
     color: "#067df7",
     hoverColor: "rgb(104, 181, 251)",
     hoverUnderlined: true,
+  },
+  [CustomTextType.Link_white16]: {
+    fontSize: 16,
+    fontWeight: 400,
+    color: "#fff",
+    lineHeight: 26,
   },
   [CustomTextType.Title_main]: {
     fontSize: 100,
