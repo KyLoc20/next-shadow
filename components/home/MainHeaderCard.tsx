@@ -3,40 +3,9 @@ import styled from "@emotion/styled";
 import { useCustomText, HTMLTag, CustomTextType } from "@/hooks/Text";
 import { useCustomButton, CustomButtonType } from "@/hooks/Button";
 import { Link } from "../generic/Link";
-const Component = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 992px;
-  height: 455px;
-  margin: 0 auto;
-  padding: 120px 16px 30px;
-`;
 type MainHeaderProps = {
   children?: React.ReactNode;
 };
-const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  text-align: center;
-`;
-const Title = styled.div`
-  margin-bottom: 30px;
-`;
-const Description = styled.div`
-  margin-bottom: 40px;
-`;
-const ButtonWarpper = styled.div`
-  margin-bottom: 30px;
-  button:not(:last-of-type) {
-    margin-right: 20px;
-  }
-`;
-const OtherInfo = styled.div``;
-const License = styled.span`
-  padding: 0 8px;
-`;
 export default function MainHeaderCard(props: MainHeaderProps) {
   const [TitleText] = useCustomText(
     HTMLTag.div,
@@ -85,10 +54,44 @@ export default function MainHeaderCard(props: MainHeaderProps) {
               <LicenseText>License: MIT</LicenseText>
             </License>
           </Link>
-
           <GithubButton>Github</GithubButton>
         </OtherInfo>
       </Content>
     </Component>
   );
 }
+const Component = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%; //width: 992px;
+  margin: 0 auto;
+`;
+
+const Content = styled.div`
+  //for content
+  width: 100%;
+  overflow: hidden;
+
+  padding: 120px 16px 30px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-align: center;
+`;
+const Title = styled.div`
+  margin-bottom: 30px;
+`;
+const Description = styled.div`
+  margin-bottom: 40px;
+`;
+const ButtonWarpper = styled.div`
+  margin-bottom: 30px;
+  button:not(:last-of-type) {
+    margin-right: 20px;
+  }
+`;
+const OtherInfo = styled.div``;
+const License = styled.span`
+  padding: 0 8px;
+`;

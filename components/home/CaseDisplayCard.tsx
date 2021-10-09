@@ -2,12 +2,67 @@ import * as React from "react";
 import styled from "@emotion/styled";
 import { jsx, css, keyframes } from "@emotion/react";
 import * as SVG from "@/components/generic/SVG";
-const Component = styled.div`
-  position: relative;
+type CaseDisplayProps = {
+  children?: React.ReactNode;
+};
+export default function CaseDisplayCard(props: CaseDisplayProps) {
+  const caseItems = [
+    CaseOpenCollective,
+    CaseEaze,
+    CaseMagicLeap,
+    CaseTrulia,
+    CaseNetflix,
+    CaseGithub,
+    CaseScale,
+    CaseTicketMaster,
+    CaseTwitch,
+    CaseSesame,
+    CasePling,
+  ].map((caseProps, index) => <Case {...caseProps} key={index}></Case>);
+  const caseItems2 = [
+    CaseAuth0,
+    CaseTencent,
+    CaseJet,
+    CaseStarBucks,
+    CaseDocker,
+    CaseHulu,
+    CaseCoinbase,
+    CaseUber,
+    CaseInvision,
+  ].map((caseProps, index) => <Case {...caseProps} key={index}></Case>);
+  return (
+    <Component>
+      <Content>
+        <WaveSlideWrapper>
+          <WaveSlide height={80}>
+            {caseItems}
+            {caseItems}
+          </WaveSlide>
+        </WaveSlideWrapper>
+        <WaveSlideWrapper>
+          <WaveSlide height={80}>
+            {caseItems2}
+            {caseItems2}
+          </WaveSlide>
+        </WaveSlideWrapper>
+      </Content>
+    </Component>
+  );
+}
+const Component = styled.section`
   width: 100%;
-  overflow: hidden;
   height: 160px;
   margin: 34px 0 64px;
+`;
+const Content = styled.div`
+  //for content
+  width: 100%;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  letter-spacing: 0.02em;
 `;
 const move = keyframes`
   to {
@@ -18,6 +73,8 @@ type WaveSlideProps = {
   height: number;
 };
 const WaveSlideWrapper = styled.div`
+  width: 100%;
+  overflow: hidden;
   position: relative;
   height: 80px;
 `;
@@ -61,52 +118,6 @@ function Case(props: CaseProps) {
         ))}
       </svg>
     </CaseWrapper>
-  );
-}
-type CaseDisplayProps = {
-  children?: React.ReactNode;
-};
-
-export default function CaseDisplayCard(props: CaseDisplayProps) {
-  const caseItems = [
-    CaseOpenCollective,
-    CaseEaze,
-    CaseMagicLeap,
-    CaseTrulia,
-    CaseNetflix,
-    CaseGithub,
-    CaseScale,
-    CaseTicketMaster,
-    CaseTwitch,
-    CaseSesame,
-    CasePling,
-  ].map((caseProps, index) => <Case {...caseProps} key={index}></Case>);
-  const caseItems2 = [
-    CaseAuth0,
-    CaseTencent,
-    CaseJet,
-    CaseStarBucks,
-    CaseDocker,
-    CaseHulu,
-    CaseCoinbase,
-    CaseUber,
-    CaseInvision,
-  ].map((caseProps, index) => <Case {...caseProps} key={index}></Case>);
-  return (
-    <Component>
-      <WaveSlideWrapper>
-        <WaveSlide height={80}>
-          {caseItems}
-          {caseItems}
-        </WaveSlide>
-      </WaveSlideWrapper>
-      <WaveSlideWrapper>
-        <WaveSlide height={80}>
-          {caseItems2}
-          {caseItems2}
-        </WaveSlide>
-      </WaveSlideWrapper>
-    </Component>
   );
 }
 //row1

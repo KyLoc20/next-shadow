@@ -5,48 +5,9 @@ import { useCustomButton, CustomButtonType } from "@/hooks/Button";
 import { Link } from "../generic/Link";
 import CaseStudyEntranceCard from "./CaseStudyEntranceCard";
 import FamousCaseCard from "./FamousCaseCard";
-const Component = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 100px 0;
-  background: rgb(250, 250, 250);
-  border-top: 1px solid rgb(234, 234, 234);
-  border-bottom: 1px solid rgb(234, 234, 234);
-`;
 type WhoUsingNextCardProps = {
   children?: React.ReactNode;
 };
-const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-`;
-const Title = styled.div`
-  margin: 16px 0;
-`;
-const SubTitle = styled.div`
-  margin-bottom: 48px;
-`;
-const CaseWrapper = styled.div`
-  display: flex;
-  z-index: 10;
-  overflow: hidden;
-  justify-content: center;
-  width: 100%;
-  margin: 64px 0 32px;
-  padding-top: 50px;
-  height: 185px;
-`;
-const EntranceWrapper = styled.div`
-  width: 100%;
-  position: absolute;
-  top: -36px;
-`;
 export default function WhoUsingNextCard(props: WhoUsingNextCardProps) {
   const [TitleText] = useCustomText(
     HTMLTag.div,
@@ -147,3 +108,47 @@ export default function WhoUsingNextCard(props: WhoUsingNextCardProps) {
     </Component>
   );
 }
+const Component = styled.section`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: rgb(250, 250, 250);
+  border-top: 1px solid rgb(234, 234, 234);
+  border-bottom: 1px solid rgb(234, 234, 234);
+`;
+const Content = styled.div`
+  //for content
+  width: 100%;
+  overflow: hidden;
+
+  padding: 100px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const Title = styled.div`
+  margin: 16px 0;
+`;
+const SubTitle = styled.div`
+  margin-bottom: 48px;
+`;
+const CaseWrapper = styled.div`
+  display: flex;
+  z-index: 10;
+  overflow: hidden;
+  justify-content: center;
+  width: 100%;
+  margin: 64px 0 32px;
+  padding-top: 50px;
+  height: 185px;
+`;
+const EntranceWrapper = styled.div`
+  //for content
+  width: 100%;
+  overflow: hidden;
+
+  position: absolute;
+  top: -36px;
+`;

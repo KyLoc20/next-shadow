@@ -6,7 +6,6 @@ import TopNewsCard from "@/components/home/TopNewsCard";
 import MainHeaderCard from "@/components/home/MainHeaderCard";
 import WhyNextCard from "@/components/home/WhyNextCard";
 import CaseDisplayCard from "@/components/home/CaseDisplayCard";
-import CaseStudyEntranceCard from "@/components/home/CaseStudyEntranceCard";
 import WhoUsingNextCard from "@/components/home/WhoUsingNextCard";
 import LearnNextCard from "@/components/home/LearnNextCard";
 import SubscribeCard from "@/components/home/SubscribeCard";
@@ -17,6 +16,7 @@ const Container = styled("section")`
   align-items: center;
   position: relative;
   background: #fff;
+  width: 100%;
   min-height: 100vh;
 `;
 export default function HomaPage(props: any) {

@@ -65,19 +65,23 @@ export default function SubscribeCard(props: SubscribeProps) {
   );
 }
 
-const Component = styled.div`
+const Component = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin: 100px 0;
+  max-width: 992px;
+  margin: 100px auto;
 `;
 const Content = styled.div`
+  //for content
+  width: 100%;
+  overflow: hidden;
+
   display: grid;
   grid-template-columns: 1fr 0.8fr;
-  padding: 32px 232px;
+  padding: 32px 0;
   align-items: center;
-  width: 100%;
 `;
 const Wrapper = styled.div`
   display: flex;

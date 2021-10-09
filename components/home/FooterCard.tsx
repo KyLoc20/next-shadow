@@ -63,19 +63,27 @@ function NavigationCard(props: NavigationProps) {
   );
 }
 const Component = styled.section`
+  //a must flex+w100
+  display: flex;
   width: 100%;
-  height: 416px;
   //paper
   background-color: #fafafa;
   border-top: 1px solid #eaeaea;
   border-bottom: 1px solid #eaeaea;
 `;
 const Content = styled.footer`
+  //for content
+  overflow: hidden;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
   max-width: 1024px;
   margin: 0 auto;
   padding: 32px 16px 64px;
 `;
 const Grid = styled.div`
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-row-gap: 2rem;

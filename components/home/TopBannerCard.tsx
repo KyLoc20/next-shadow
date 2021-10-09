@@ -25,15 +25,15 @@ export default function TopBannerCard(props: TopBannerProps) {
     </Component>
   );
 }
-const Component = styled.div`
+const Component = styled.section`
   display: flex;
   align-items: center;
   width: 100%;
-  height: 50px;
   background: #000;
 `;
 const Content = styled.div`
   width: 100%;
+  overflow: hidden;
   max-width: 1024px;
   display: flex;
   align-items: center;

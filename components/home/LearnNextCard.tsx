@@ -40,18 +40,21 @@ export default function LearnNextCard(props: LearnNextProps) {
     </Component>
   );
 }
-const Component = styled.div`
+const Component = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1024px;
+  width: 100%; //width: 1024px;
 `;
 const Content = styled.div`
+  //for content
+  width: 100%;
+  overflow: hidden;
+
   display: flex;
   padding: 100px 16px;
   flex-direction: column;
   align-items: center;
-  width: 100%;
 `;
 const Title = styled.div`
   margin-bottom: 16px;
@@ -61,7 +64,10 @@ const SubTitle = styled.div`
 `;
 const Figure = styled.div`
   display: flex;
+  //for content
   width: 100%;
+  overflow: hidden;
+
   justify-content: center;
   margin-bottom: 60px;
   //paper

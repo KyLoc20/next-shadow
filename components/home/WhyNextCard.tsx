@@ -1,24 +1,88 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 import { useCustomText, HTMLTag, CustomTextType } from "@/hooks/Text";
-import { useCustomButton, CustomButtonType } from "@/hooks/Button";
 import { Link } from "../generic/Link";
 import FeatureCard from "./FeatureCard";
-const Component = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 992px;
-  margin: 0 auto;
-  padding: 100px 16px;
-`;
 type WhyNextProps = {
   children?: React.ReactNode;
 };
+export default function WhyNextCard(props: WhyNextProps) {
+  const [TitleText] = useCustomText(
+    HTMLTag.div,
+    CustomTextType.Title_main32,
+    "center"
+  );
+  const [SubTitleText] = useCustomText(
+    HTMLTag.div,
+    CustomTextType.Title_main16,
+    "center"
+  );
+  const FeatureItems = features.map((item, index) => (
+    <FeatureCard
+      key={index}
+      title={item.title}
+      description={item.description}
+      docLink={item.docLink}
+    ></FeatureCard>
+  ));
+  const [MoreText] = useCustomText(
+    HTMLTag.div,
+    CustomTextType.Content_normal14,
+    "center"
+  );
+  const [LinkText] = useCustomText(HTMLTag.span, CustomTextType.Link_primary14);
+  return (
+    <Component>
+      <Content>
+        <Title>
+          <TitleText>Why Next.js</TitleText>{" "}
+        </Title>
+        <SubTitle>
+          <SubTitleText>
+            The world’s leading companies use and love Next.js
+          </SubTitleText>
+        </SubTitle>
+        <FeatureGrid>{FeatureItems}</FeatureGrid>
+        <More>
+          <MoreText>
+            <strong>And more:</strong> Support for{" "}
+            <Link href="https://nextjs.org/docs/basic-features/environment-variables">
+              <LinkText>environment variables</LinkText>
+            </Link>
+            ,{" "}
+            <Link href="https://nextjs.org/docs/advanced-features/preview-mode">
+              <LinkText>preview mode</LinkText>
+            </Link>
+            ,{" "}
+            <Link href="https://nextjs.org/docs/api-reference/next/head">
+              <LinkText>custom head tags</LinkText>
+            </Link>
+            ,{" "}
+            <Link href="https://nextjs.org/docs/basic-features/supported-browsers-features#polyfills">
+              <LinkText>automatic polyfills</LinkText>
+            </Link>
+            , and more.
+          </MoreText>
+        </More>
+      </Content>
+    </Component>
+  );
+}
+const Component = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%; //width: 992px;
+  margin: 0 auto;
+`;
 const Content = styled.div`
+  //for content
+  width: 100%;
+  overflow: hidden;
+
+  padding: 100px 16px;
   display: flex;
   flex-direction: column;
-  height: 100%;
 `;
 const Title = styled.div`
   margin: 16px 0;
@@ -27,6 +91,8 @@ const SubTitle = styled.div`
   margin-bottom: 48px;
 `;
 const FeatureGrid = styled.div`
+  margin: 0 auto;
+  max-width: 992px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-gap: 24px;
@@ -114,65 +180,3 @@ const features: Feature[] = [
     docLink: "https://nextjs.org/docs",
   },
 ];
-export default function WhyNextCard(props: WhyNextProps) {
-  const [TitleText] = useCustomText(
-    HTMLTag.div,
-    CustomTextType.Title_main32,
-    "center"
-  );
-  const [SubTitleText] = useCustomText(
-    HTMLTag.div,
-    CustomTextType.Title_main16,
-    "center"
-  );
-  const FeatureItems = features.map((item, index) => (
-    <FeatureCard
-      key={index}
-      title={item.title}
-      description={item.description}
-      docLink={item.docLink}
-    ></FeatureCard>
-  ));
-  const [MoreText] = useCustomText(
-    HTMLTag.div,
-    CustomTextType.Content_normal14,
-    "center"
-  );
-  const [LinkText] = useCustomText(HTMLTag.span, CustomTextType.Link_primary14);
-  return (
-    <Component>
-      <Content>
-        <Title>
-          <TitleText>Why Next.js</TitleText>{" "}
-        </Title>
-        <SubTitle>
-          <SubTitleText>
-            The world’s leading companies use and love Next.js
-          </SubTitleText>
-        </SubTitle>
-        <FeatureGrid>{FeatureItems}</FeatureGrid>
-        <More>
-          <MoreText>
-            <strong>And more:</strong> Support for{" "}
-            <Link href="https://nextjs.org/docs/basic-features/environment-variables">
-              <LinkText>environment variables</LinkText>
-            </Link>
-            ,{" "}
-            <Link href="https://nextjs.org/docs/advanced-features/preview-mode">
-              <LinkText>preview mode</LinkText>
-            </Link>
-            ,{" "}
-            <Link href="https://nextjs.org/docs/api-reference/next/head">
-              <LinkText>custom head tags</LinkText>
-            </Link>
-            ,{" "}
-            <Link href="https://nextjs.org/docs/basic-features/supported-browsers-features#polyfills">
-              <LinkText>automatic polyfills</LinkText>
-            </Link>
-            , and more.
-          </MoreText>
-        </More>
-      </Content>
-    </Component>
-  );
-}
