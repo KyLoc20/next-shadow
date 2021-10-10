@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { useCustomText, HTMLTag, CustomTextType } from "@/hooks/Text";
 import { Link } from "../generic/Link";
 import FeatureCard from "./FeatureCard";
+import Box from "@/components/generic/Box";
 type WhyNextProps = {
   children?: React.ReactNode;
 };
@@ -33,7 +34,7 @@ export default function WhyNextCard(props: WhyNextProps) {
   const [LinkText] = useCustomText(HTMLTag.span, CustomTextType.Link_primary14);
   return (
     <Component>
-      <Content>
+      <Box vertical padding="100px 16px">
         <Title>
           <TitleText>Why Next.js</TitleText>{" "}
         </Title>
@@ -64,7 +65,7 @@ export default function WhyNextCard(props: WhyNextProps) {
             , and more.
           </MoreText>
         </More>
-      </Content>
+      </Box>
     </Component>
   );
 }
