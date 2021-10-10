@@ -1,6 +1,13 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
+function parseLengthValue(
+  v: number | string | undefined,
+  defaultValue?: string
+) {
+  if (v != null) return typeof v === "number" ? parseNumberWithPx(v) : v;
+  else return defaultValue;
+}
 const parseNumberWithPx = (v: number | undefined) =>
   v != null ? `${v}px` : undefined;
 const parseNumberWithEm = (v: number | undefined) =>
@@ -26,6 +33,10 @@ type BasicBoxProps = {
   overflow?: string; //by default "hidden"
   width?: number | string; //by default "100%"
   height?: number | string; //"100%"
+  minWidth?: number | string;
+  maxWidth?: number | string;
+  minHeight?: number | string;
+  maxHeight?: number | string;
   padding?: string;
   margin?: string;
   vertical?: boolean; // shortcut for flex-direction:column
@@ -41,8 +52,12 @@ const BasicBox = styled.div`
   justify-content: ${(props: BoxProps) => props.justifyContent};
   align-items: ${(props: BoxProps) => props.alignItems};
   align-content: ${(props: BoxProps) => props.alignContent};
-  width: ${(props: BoxProps) => (props.width != null ? props.width : "100%")};
-  height: ${(props: BoxProps) => props.height};
+  width: ${(props: BoxProps) => parseLengthValue(props.width, "100%")};
+  height: ${(props: BoxProps) => parseLengthValue(props.height, "100%")};
+  min-width: ${(props: BoxProps) => parseLengthValue(props.minWidth)};
+  min-height: ${(props: BoxProps) => parseLengthValue(props.minHeight)};
+  max-width: ${(props: BoxProps) => parseLengthValue(props.maxWidth)};
+  max-height: ${(props: BoxProps) => parseLengthValue(props.maxHeight)};
   padding: ${(props: BoxProps) => props.padding};
   margin: ${(props: BoxProps) => props.margin};
   overflow: ${(props: BoxProps) => props.overflow || "hidden"};
@@ -51,20 +66,3 @@ const BasicBox = styled.div`
 export default function Box(props: BoxProps) {
   return <BasicBox {...props}></BasicBox>;
 }
-// //genStyle > genCSS
-// const genStyle = (props: TextProps): React.CSSProperties => {
-//   return {
-//     fontSize: parseNumberWithPx(props.fontSize),
-//     fontWeight: props.fontWeight,
-//     lineHeight: parseNumberWithPx(props.lineHeight),
-//     letterSpacing: parseNumberWithEm(props.letterSpacing),
-//     textAlign: props.textAlign,
-//   };
-// };
-// const genCSS = (props: TextProps) => css`
-//   color: ${props.color || "currentColor"};
-//   &:hover {
-//     color: ${props.hoverColor || null};
-//     text-decoration: ${props.hoverUnderlined ? "underline" : null};
-//   }
-// `;
