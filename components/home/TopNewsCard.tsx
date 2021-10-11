@@ -57,6 +57,7 @@ const Content = styled.div`
   width: 100%;
   overflow: hidden;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   // height: 25px;
   letter-spacing: 0.02em;

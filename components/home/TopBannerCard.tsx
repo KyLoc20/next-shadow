@@ -14,7 +14,7 @@ export default function TopBannerCard(props: TopBannerProps) {
     JC: "space-between",
     m: "0 auto",
     p: "0 16px",
-    maxW: 1024,
+    maxW: 992,
   });
 
   return (

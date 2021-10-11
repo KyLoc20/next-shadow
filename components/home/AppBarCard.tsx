@@ -2,12 +2,22 @@ import * as React from "react";
 import styled from "@emotion/styled";
 import { useCustomButton, CustomButtonType } from "@/hooks/Button";
 import { useClickable } from "@/hooks/Clickable";
+import { useCustomBox } from "@/hooks/Box";
 import { Icon } from "@/ui/Icon";
 import { useCustomText, HTMLTag, CustomTextType } from "@/hooks/Text";
+import { useWindowSize } from "@/hooks/Window";
 type AppBarProps = {
   children?: React.ReactNode;
 };
+
+//todo to seal media query
+const isMobile = (windowWidth: number | undefined) => {
+  if (windowWidth != null && windowWidth <= 1024) return true;
+  else return false;
+};
+//todo menu
 export default function AppBarCard(props: AppBarProps) {
+  const winSize = useWindowSize();
   const [LinkText] = useCustomText(
     HTMLTag.span,
     CustomTextType.Link_navigation16
@@ -30,34 +40,46 @@ export default function AppBarCard(props: AppBarProps) {
       window.open("https://github.com/KyLoc20/next-shadow");
     }, 200);
   };
-  const [GithubButton] = useClickable(
+  const [GithubClickable] = useClickable(
     handleClickGithub,
     "rgb(105, 105, 105)",
     "black"
   );
+  const [Content] = useCustomBox({
+    AI: "center",
+    JC: "space-between",
+    m: "0 auto",
+    p: "0 16px",
+    maxW: 992,
+  });
   return (
     <Component className="app-bar">
       <Content>
         <Logo></Logo>
-        {navigationMenuItems}
-        <LearnButton>Learn</LearnButton>
-        <GithubButton>
-          <Icon name="github" size={22}></Icon>
-        </GithubButton>
+        {isMobile(winSize.width) ? (
+          <LearnButton>Learn</LearnButton>
+        ) : (
+          <Stack>
+            {navigationMenuItems}
+            <LearnButton>Learn</LearnButton>
+            <GithubClickable>
+              <Icon name="github" size={22}></Icon>
+            </GithubClickable>
+          </Stack>
+        )}
       </Content>
     </Component>
   );
 }
-const BasicAppBar = styled("section")`
+const Component = styled("section")`
+  //Basic AppBar
   position: fixed;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  box-sizing: border-box;
   overflow: hidden;
   z-index: 20;
-`;
-const Component = styled(BasicAppBar)`
+  //Custom AppBar
   position: sticky;
   top: 0px;
   justify-content: center;
@@ -65,13 +87,12 @@ const Component = styled(BasicAppBar)`
   height: 80px;
   background: #fff;
 `;
-const Content = styled.div`
-  overflow: hidden;
+const Stack = styled.div`
   display: flex;
-  align-items: center;
+  flex: 1;
   justify-content: space-between;
-  height: 40px;
-  padding: 0 16px;
+  align-items: center;
+  margin-left: 48px;
 `;
 
 function Logo() {
