@@ -3,18 +3,33 @@ import styled from "@emotion/styled";
 import { useCustomText, HTMLTag, CustomTextType } from "@/hooks/Text";
 import { useCustomButton, CustomButtonType } from "@/hooks/Button";
 import { Link } from "../generic/Link";
+import { useWindowSize } from "@/hooks/Window";
+import { isMobile } from "@/utils/media";
+import { useCustomBox } from "@/hooks/Box";
+import Stack from "@/components/generic/Stack";
 type MainHeaderProps = {
   children?: React.ReactNode;
 };
 export default function MainHeaderCard(props: MainHeaderProps) {
+  const winSize = useWindowSize();
+  const [Content] = useCustomBox({
+    vertical: true,
+    m: "0 auto",
+    p: isMobile(winSize.width) ? "40px 16px 50px" : "120px 16px 30px",
+    maxW: 992,
+  });
   const [TitleText] = useCustomText(
-    HTMLTag.div,
-    CustomTextType.Title_main,
+    HTMLTag.h1,
+    isMobile(winSize.width)
+      ? CustomTextType.Title_default48
+      : CustomTextType.Title_default100,
     "center"
   );
   const [DescriptionText] = useCustomText(
-    HTMLTag.div,
-    CustomTextType.Description_main,
+    HTMLTag.h3,
+    isMobile(winSize.width)
+      ? CustomTextType.Description_light16
+      : CustomTextType.Description_light20,
     "center"
   );
   const [StartLearningButton] = useCustomButton(
@@ -44,10 +59,10 @@ export default function MainHeaderCard(props: MainHeaderProps) {
             config needed.
           </DescriptionText>
         </Description>
-        <ButtonWarpper>
+        <Stack>
           <StartLearningButton>Start Learning</StartLearningButton>
           <DocumentationButton>Documentation</DocumentationButton>
-        </ButtonWarpper>
+        </Stack>
         <OtherInfo>
           <Link href="https://github.com/vercel/next.js/blob/canary/license.md">
             <License>
@@ -66,18 +81,6 @@ const Component = styled.section`
   justify-content: center;
   width: 100%; //width: 992px;
   margin: 0 auto;
-`;
-
-const Content = styled.div`
-  //for content
-  width: 100%;
-  overflow: hidden;
-
-  padding: 120px 16px 30px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  text-align: center;
 `;
 const Title = styled.div`
   margin-bottom: 30px;

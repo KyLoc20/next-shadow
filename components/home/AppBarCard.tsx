@@ -6,14 +6,9 @@ import { useCustomBox } from "@/hooks/Box";
 import { Icon } from "@/ui/Icon";
 import { useCustomText, HTMLTag, CustomTextType } from "@/hooks/Text";
 import { useWindowSize } from "@/hooks/Window";
+import { isMobile } from "@/utils/media";
 type AppBarProps = {
   children?: React.ReactNode;
-};
-
-//todo to seal media query
-const isMobile = (windowWidth: number | undefined) => {
-  if (windowWidth != null && windowWidth <= 1024) return true;
-  else return false;
 };
 //todo menu
 export default function AppBarCard(props: AppBarProps) {

@@ -63,11 +63,14 @@ enum CustomTextType {
   Link_navigation14,
   Link_white16,
   Link_primary14,
+  Title_default100,
+  Title_default48,
   Title_main,
   Title_main32,
   Title_main16,
   Title_default14,
-  Description_main,
+  Description_light20,
+  Description_light16,
   Content_light12,
   Content_normal14,
   Content_highlight14,
@@ -106,6 +109,18 @@ const CUSTOM_FACTORY: CustomTextFactory = {
     color: "#fff",
     lineHeight: 26,
   },
+  [CustomTextType.Title_default100]: {
+    fontSize: 100,
+    fontWeight: 800,
+    letterSpacing: -0.05,
+    color: "#111111", //rgb(17, 17, 17)
+  },
+  [CustomTextType.Title_default48]: {
+    fontSize: 48,
+    fontWeight: 800,
+    letterSpacing: -0.06,
+    color: "#111111", //rgb(17, 17, 17)
+  },
   [CustomTextType.Title_main]: {
     fontSize: 100,
     fontWeight: 800,
@@ -130,10 +145,16 @@ const CUSTOM_FACTORY: CustomTextFactory = {
     fontWeight: 500,
     color: "#111111",
   },
-  [CustomTextType.Description_main]: {
+  [CustomTextType.Description_light20]: {
     fontSize: 20,
     fontWeight: 400,
     lineHeight: 32,
+    color: "#666666",
+  },
+  [CustomTextType.Description_light16]: {
+    fontSize: 16,
+    fontWeight: 400,
+    lineHeight: 26,
     color: "#666666",
   },
   [CustomTextType.Content_light12]: {
