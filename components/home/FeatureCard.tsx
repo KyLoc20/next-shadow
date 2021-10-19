@@ -6,8 +6,8 @@ import { Link } from "../generic/Link";
 type FeatureProps = {
   children?: React.ReactNode;
   title: string;
-  description: string;
-  docLink: string;
+  description: string | React.ReactNode;
+  docLink?: string;
 };
 export default function FeatureCard(props: FeatureProps) {
   const [TitleText] = useCustomText(
@@ -21,30 +21,31 @@ export default function FeatureCard(props: FeatureProps) {
   const [LinkText] = useCustomText(HTMLTag.span, CustomTextType.Link_primary14);
   return (
     <Component>
-      <Link href={props.docLink}>
-        <Content>
-          <Title>
-            <TitleText>{props.title}</TitleText>
-          </Title>
-          <Description>
-            <DescriptionText>{props.description}</DescriptionText>
-          </Description>
+      <Link href={props.docLink || ""}>
+        <Title>
+          <TitleText>{props.title}</TitleText>
+        </Title>
+        <Description>
+          <DescriptionText>{props.description}</DescriptionText>
+        </Description>
+        {props.docLink && (
           <Documentation className="doc">
             <Link href={props.docLink}>
               <LinkText>Documentation →</LinkText>
             </Link>
           </Documentation>
-        </Content>
+        )}
       </Link>
     </Component>
   );
 }
+//its width is controlled by display:grid
 const Component = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  // width: 265px;
-  // height: 122px;
+  padding: 24px;
+  overflow: hidden;
   //paper
   border: 1px solid #eaeaea;
   border-radius: 5px;
@@ -53,12 +54,6 @@ const Component = styled.div`
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
     border: 1px solid transparent;
   }
-`;
-const Content = styled.div`
-  padding: 24px;
-  //for content
-  width: 100%;
-  overflow: hidden;
 `;
 const Title = styled.div``;
 const Description = styled.div`

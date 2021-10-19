@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 import { useCustomText, HTMLTag, CustomTextType } from "@/hooks/Text";
-import { useCustomBox } from "@/hooks/Box";
+import { useCustomBox } from "@/hooks/Container";
 import { Link } from "../generic/Link";
 import * as SVG from "@/components/generic/SVG";
 type TopBannerProps = {

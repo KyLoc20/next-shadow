@@ -5,8 +5,7 @@ import { useCustomButton, CustomButtonType } from "@/hooks/Button";
 import { Link } from "../generic/Link";
 import { useWindowSize } from "@/hooks/Window";
 import { isMobile } from "@/utils/media";
-import { useCustomBox } from "@/hooks/Box";
-import Stack from "@/components/generic/Stack";
+import { useCustomBox, useCustomStack } from "@/hooks/Container";
 type MainHeaderProps = {
   children?: React.ReactNode;
 };
@@ -45,6 +44,8 @@ export default function MainHeaderCard(props: MainHeaderProps) {
   const [GithubButton] = useCustomButton(
     CustomButtonType.Content_h34_primary_text
   );
+  const [ButtonWrapper] = useCustomStack({ ep: "10px", m: "0 0 30px 0" });
+  const [OtherInfo] = useCustomStack({ ep: "0 8px" });
   return (
     <Component>
       <Content>
@@ -59,10 +60,10 @@ export default function MainHeaderCard(props: MainHeaderProps) {
             config needed.
           </DescriptionText>
         </Description>
-        <Stack>
+        <ButtonWrapper>
           <StartLearningButton>Start Learning</StartLearningButton>
           <DocumentationButton>Documentation</DocumentationButton>
-        </Stack>
+        </ButtonWrapper>
         <OtherInfo>
           <Link href="https://github.com/vercel/next.js/blob/canary/license.md">
             <License>

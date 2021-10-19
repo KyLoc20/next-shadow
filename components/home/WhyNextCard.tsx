@@ -4,10 +4,20 @@ import { useCustomText, HTMLTag, CustomTextType } from "@/hooks/Text";
 import { Link } from "../generic/Link";
 import FeatureCard from "./FeatureCard";
 import Box from "@/components/generic/Box";
+import { useWindowSize } from "@/hooks/Window";
+import { isMobile } from "@/utils/media";
+import { useCustomBox, useCustomStack } from "@/hooks/Container";
 type WhyNextProps = {
   children?: React.ReactNode;
 };
 export default function WhyNextCard(props: WhyNextProps) {
+  const winSize = useWindowSize();
+  const [Content] = useCustomBox({
+    vertical: true,
+    m: "0 auto",
+    p: isMobile(winSize.width) ? "64px 16px" : "100px 16px",
+    maxW: 992,
+  });
   const [TitleText] = useCustomText(
     HTMLTag.div,
     CustomTextType.Title_main32,
@@ -18,7 +28,7 @@ export default function WhyNextCard(props: WhyNextProps) {
     CustomTextType.Title_main16,
     "center"
   );
-  const FeatureItems = features.map((item, index) => (
+  const featureItems = features.map((item, index) => (
     <FeatureCard
       key={index}
       title={item.title}
@@ -26,15 +36,10 @@ export default function WhyNextCard(props: WhyNextProps) {
       docLink={item.docLink}
     ></FeatureCard>
   ));
-  const [MoreText] = useCustomText(
-    HTMLTag.div,
-    CustomTextType.Content_normal14,
-    "center"
-  );
-  const [LinkText] = useCustomText(HTMLTag.span, CustomTextType.Link_primary14);
+
   return (
     <Component>
-      <Box vertical padding="100px 16px">
+      <Content>
         <Title>
           <TitleText>Why Next.js</TitleText>{" "}
         </Title>
@@ -43,31 +48,57 @@ export default function WhyNextCard(props: WhyNextProps) {
             The world’s leading companies use and love Next.js
           </SubTitleText>
         </SubTitle>
-        <FeatureGrid>{FeatureItems}</FeatureGrid>
-        <More>
-          <MoreText>
-            <strong>And more:</strong> Support for{" "}
-            <Link href="https://nextjs.org/docs/basic-features/environment-variables">
-              <LinkText>environment variables</LinkText>
-            </Link>
-            ,{" "}
-            <Link href="https://nextjs.org/docs/advanced-features/preview-mode">
-              <LinkText>preview mode</LinkText>
-            </Link>
-            ,{" "}
-            <Link href="https://nextjs.org/docs/api-reference/next/head">
-              <LinkText>custom head tags</LinkText>
-            </Link>
-            ,{" "}
-            <Link href="https://nextjs.org/docs/basic-features/supported-browsers-features#polyfills">
-              <LinkText>automatic polyfills</LinkText>
-            </Link>
-            , and more.
-          </MoreText>
-        </More>
-      </Box>
+        <FeatureGrid
+          style={{
+            gridTemplateColumns: isMobile(winSize.width)
+              ? undefined
+              : "repeat(3, minmax(0, 1fr))",
+          }}
+        >
+          {featureItems}
+        </FeatureGrid>
+        <AndMore isMobile={isMobile(winSize.width)}></AndMore>
+      </Content>
     </Component>
   );
+}
+type AndMoreProps = {
+  children?: React.ReactNode;
+  isMobile: boolean;
+};
+function AndMore(props: AndMoreProps) {
+  const [MoreText] = useCustomText(
+    HTMLTag.div,
+    CustomTextType.Content_normal14,
+    "center"
+  );
+  const [LinkText] = useCustomText(HTMLTag.span, CustomTextType.Link_primary14);
+  const innerContent = (
+    <MoreText>
+      <strong>And more:</strong> Support for
+      <Link href="https://nextjs.org/docs/basic-features/environment-variables">
+        <LinkText>environment variables</LinkText>
+      </Link>
+      ,
+      <Link href="https://nextjs.org/docs/advanced-features/preview-mode">
+        <LinkText>preview mode</LinkText>
+      </Link>
+      ,
+      <Link href="https://nextjs.org/docs/api-reference/next/head">
+        <LinkText>custom head tags</LinkText>
+      </Link>
+      ,
+      <Link href="https://nextjs.org/docs/basic-features/supported-browsers-features#polyfills">
+        <LinkText>automatic polyfills</LinkText>
+      </Link>
+      , and more.
+    </MoreText>
+  );
+  if (props.isMobile)
+    return (
+      <FeatureCard title="And more" description={innerContent}></FeatureCard>
+    );
+  else return <More>{innerContent}</More>;
 }
 const Component = styled.section`
   display: flex;
@@ -75,15 +106,6 @@ const Component = styled.section`
   justify-content: center;
   width: 100%; //width: 992px;
   margin: 0 auto;
-`;
-const Content = styled.div`
-  //for content
-  width: 100%;
-  overflow: hidden;
-
-  padding: 100px 16px;
-  display: flex;
-  flex-direction: column;
 `;
 const Title = styled.div`
   margin: 16px 0;
@@ -95,7 +117,6 @@ const FeatureGrid = styled.div`
   margin: 0 auto;
   max-width: 992px;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-gap: 24px;
   gap: 24px;
 `;

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { default as Box, BoxProps } from "@/components/generic/Box";
+import { default as Stack, StackProps } from "@/components/generic/Stack";
 type CustomBoxProps = {
   vertical?: boolean;
   overflow?: string; //by default "hidden"
@@ -43,4 +44,24 @@ function useCustomBox(custom: CustomBoxProps) {
   );
   return [renderBox];
 }
-export { useCustomBox };
+type CustomStackProps = {
+  p?: string; //padding
+  ep?: string; //eachPadding
+  m?: string; //margin
+  em?: string; //eachMargin
+};
+const genPropsForCustomStack = (props: CustomStackProps): StackProps => {
+  return {
+    padding: props.p,
+    eachPadding: props.ep,
+    margin: props.m,
+    eachMargin: props.em,
+  };
+};
+function useCustomStack(custom: CustomStackProps) {
+  const renderStack = (props: StackProps) => (
+    <Stack {...genPropsForCustomStack(custom)}>{props.children}</Stack>
+  );
+  return [renderStack];
+}
+export { useCustomBox, useCustomStack };

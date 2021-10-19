@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "@emotion/styled";
 import { useCustomButton, CustomButtonType } from "@/hooks/Button";
 import { useClickable } from "@/hooks/Clickable";
-import { useCustomBox } from "@/hooks/Box";
+import { useCustomBox } from "@/hooks/Container";
 import { Icon } from "@/ui/Icon";
 import { useCustomText, HTMLTag, CustomTextType } from "@/hooks/Text";
 import { useWindowSize } from "@/hooks/Window";
