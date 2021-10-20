@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "@emotion/styled";
 import { useCustomText, HTMLTag, CustomTextType } from "@/hooks/Text";
 import { useCustomButton, CustomButtonType } from "@/hooks/Button";
+import { useCustomBox } from "@/hooks/Container";
 import { Link } from "../generic/Link";
 type FeatureProps = {
   children?: React.ReactNode;
@@ -19,15 +20,22 @@ export default function FeatureCard(props: FeatureProps) {
     CustomTextType.Content_normal14
   );
   const [LinkText] = useCustomText(HTMLTag.span, CustomTextType.Link_primary14);
+  const isDescriptionString = typeof props.description === "string";
+  const [DescriptionWrapper] = useCustomBox({ m: "14px 0;" });
+  const description = isDescriptionString ? (
+    <DescriptionWrapper>
+      <DescriptionText>{props.description}</DescriptionText>
+    </DescriptionWrapper>
+  ) : (
+    <DescriptionWrapper>{props.description}</DescriptionWrapper>
+  );
   return (
     <Component>
-      <Link href={props.docLink || ""}>
+      <Link href={props.docLink}>
         <Title>
           <TitleText>{props.title}</TitleText>
         </Title>
-        <Description>
-          <DescriptionText>{props.description}</DescriptionText>
-        </Description>
+        {description}
         {props.docLink && (
           <Documentation className="doc">
             <Link href={props.docLink}>
@@ -46,6 +54,7 @@ const Component = styled.div`
   justify-content: center;
   padding: 24px;
   overflow: hidden;
+  line-height: 1.65;
   //paper
   border: 1px solid #eaeaea;
   border-radius: 5px;
@@ -56,7 +65,4 @@ const Component = styled.div`
   }
 `;
 const Title = styled.div``;
-const Description = styled.div`
-  margin: 14px 0;
-`;
 const Documentation = styled.div``;

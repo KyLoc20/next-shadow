@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 import { useCustomText, HTMLTag, CustomTextType } from "@/hooks/Text";
 import { Link } from "../generic/Link";
 import FeatureCard from "./FeatureCard";
-import Box from "@/components/generic/Box";
 import { useWindowSize } from "@/hooks/Window";
 import { isMobile } from "@/utils/media";
 import { useCustomBox, useCustomStack } from "@/hooks/Container";
@@ -70,12 +69,12 @@ function AndMore(props: AndMoreProps) {
   const [MoreText] = useCustomText(
     HTMLTag.div,
     CustomTextType.Content_normal14,
-    "center"
+    props.isMobile ? "left" : "center"
   );
   const [LinkText] = useCustomText(HTMLTag.span, CustomTextType.Link_primary14);
   const innerContent = (
     <MoreText>
-      <strong>And more:</strong> Support for
+      Support for{" "}
       <Link href="https://nextjs.org/docs/basic-features/environment-variables">
         <LinkText>environment variables</LinkText>
       </Link>
@@ -94,9 +93,15 @@ function AndMore(props: AndMoreProps) {
       , and more.
     </MoreText>
   );
+  const [More] = useCustomBox({
+    JC: "center",
+    m: props.isMobile ? "24px 0 0" : "40px 0",
+  });
   if (props.isMobile)
     return (
-      <FeatureCard title="And more" description={innerContent}></FeatureCard>
+      <More>
+        <FeatureCard title="And more" description={innerContent}></FeatureCard>
+      </More>
     );
   else return <More>{innerContent}</More>;
 }
@@ -119,10 +124,6 @@ const FeatureGrid = styled.div`
   display: grid;
   grid-gap: 24px;
   gap: 24px;
-`;
-const More = styled.div`
-  margin: 40px 0;
-  line-height: 25px;
 `;
 type Feature = {
   title: string;

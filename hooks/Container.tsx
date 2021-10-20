@@ -4,6 +4,8 @@ import { default as Stack, StackProps } from "@/components/generic/Stack";
 type CustomBoxProps = {
   vertical?: boolean;
   overflow?: string; //by default "hidden"
+  borderbox?: boolean; //by default box-sizing:"content-box"
+  //todo shouldnt be "100%"
   w?: number | string; //by default "100%"
   h?: number | string; //"100%"
   p?: string;
@@ -20,12 +22,18 @@ type CustomBoxProps = {
     | "space-evenly"
     | "space-around";
   AI?: "stretch" | "flex-start" | "center" | "flex-end";
+  //paper
+  bg?: string;
+  b?: string;
+  br?: number;
+  bs?: string;
 };
 
 const genPropsForCustomButton = (props: CustomBoxProps): BoxProps => {
   return {
     vertical: props.vertical,
     overflow: props.overflow,
+    boxSizing: props.borderbox ? "border-box" : "content-box",
     width: props.w,
     height: props.h,
     padding: props.p,
@@ -36,6 +44,10 @@ const genPropsForCustomButton = (props: CustomBoxProps): BoxProps => {
     maxHeight: props.maxH,
     justifyContent: props.JC,
     alignItems: props.AI,
+    background: props.bg,
+    border: props.b,
+    borderRadius: props.br,
+    boxShadow: props.bs,
   };
 };
 function useCustomBox(custom: CustomBoxProps) {

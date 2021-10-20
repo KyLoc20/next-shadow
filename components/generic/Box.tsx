@@ -12,6 +12,7 @@ const parseNumberWithPx = (v: number | undefined) =>
   v != null ? `${v}px` : undefined;
 const parseNumberWithEm = (v: number | undefined) =>
   v != null ? `${v}em` : undefined;
+
 type BasicBoxProps = {
   flexDirection?: "row" | "column"; //by default flex-direction:row
   justifyContent?:
@@ -31,6 +32,7 @@ type BasicBoxProps = {
     | "space-evenly"
     | "space-around";
   overflow?: string; //by default "hidden"
+  boxSizing?: "border-box" | "content-box";
   width?: number | string; //by default "100%"
   height?: number | string; //"100%"
   minWidth?: number | string;
@@ -42,9 +44,16 @@ type BasicBoxProps = {
   vertical?: boolean; // shortcut for flex-direction:column
   notFlex?: boolean; //by default display:flex
 };
+type PaperProps = {
+  background?: string;
+  border?: string;
+  borderRadius?: number;
+  boxShadow?: string;
+};
 export type BoxProps = {
   children?: React.ReactNode;
-} & BasicBoxProps;
+} & BasicBoxProps &
+  PaperProps;
 const BasicBox = styled.div`
   display: ${(props: BoxProps) => (props.notFlex ? "block" : "flex")};
   flex-direction: ${(props: BoxProps) =>
@@ -52,6 +61,7 @@ const BasicBox = styled.div`
   justify-content: ${(props: BoxProps) => props.justifyContent};
   align-items: ${(props: BoxProps) => props.alignItems};
   align-content: ${(props: BoxProps) => props.alignContent};
+  box-sizing: ${(props: BoxProps) => props.boxSizing};
   width: ${(props: BoxProps) => parseLengthValue(props.width, "100%")};
   height: ${(props: BoxProps) => parseLengthValue(props.height)};
   min-width: ${(props: BoxProps) => parseLengthValue(props.minWidth)};
@@ -61,6 +71,11 @@ const BasicBox = styled.div`
   padding: ${(props: BoxProps) => props.padding};
   margin: ${(props: BoxProps) => props.margin};
   overflow: ${(props: BoxProps) => props.overflow || "hidden"};
+  //paper
+  background: ${(props: BoxProps) => props.background};
+  border: ${(props: BoxProps) => props.border};
+  border-radius: ${(props: BoxProps) => parseLengthValue(props.borderRadius)};
+  box-shadow: ${(props: BoxProps) => props.boxShadow};
 `;
 
 export default function Box(props: BoxProps) {

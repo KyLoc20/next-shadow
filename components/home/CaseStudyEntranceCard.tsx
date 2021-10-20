@@ -2,20 +2,43 @@ import * as React from "react";
 import styled from "@emotion/styled";
 import * as SVG from "@/components/generic/SVG";
 import { useCustomButton, CustomButtonType } from "@/hooks/Button";
+import { useWindowSize } from "@/hooks/Window";
+import { isMobile } from "@/utils/media";
+import { useCustomBox } from "@/hooks/Container";
+type CaseStudyEntranceProps = {
+  children?: React.ReactNode;
+};
+export default function CaseStudyEntranceCard(props: CaseStudyEntranceProps) {
+  const winSize = useWindowSize();
+  const [Content] = useCustomBox({
+    vertical: isMobile(winSize.width) ? true : false,
+    m: "0 auto",
+    p: "16px",
+    w: isMobile(winSize.width) ? "90%" : "100%",
+    maxW: isMobile(winSize.width) ? "100%" : 450,
+    borderbox: true,
+    JC: "space-between",
+    AI: "center",
+    bg: "#ffffff",
+    br: 6,
+    bs: "0px 30px 60px rgba(0, 0, 0, 0.12)",
+  });
+  const [ReadButton] = useCustomButton(CustomButtonType.Content_h45_primary);
+
+  return (
+    <Component>
+      <Content>
+        <Case {...CaseHulu}></Case>
+        <ReadButton>Read Case Study</ReadButton>
+      </Content>
+    </Component>
+  );
+}
 const Component = styled.div`
-  padding: 16px;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0px 30px 60px rgba(0, 0, 0, 0.12);
-  border-radius: 6px;
-  max-width: 450px;
-  height: 72px;
-  box-sizing: border-box;
-  margin: 0px auto;
-`;
-const Content = styled.div`
-  display: flex;
   width: 100%;
-  justify-content: space-between;
+  position: relative;
+  margin-top: -36px;
+  margin-bottom: 64px;
 `;
 const CaseHulu = {
   width: 105,
@@ -60,19 +83,5 @@ function Case(props: CaseProps) {
         ))}
       </svg>
     </CaseWrapper>
-  );
-}
-type CaseStudyEntranceProps = {
-  children?: React.ReactNode;
-};
-export default function CaseStudyEntranceCard(props: CaseStudyEntranceProps) {
-  const [ReadButton] = useCustomButton(CustomButtonType.Content_h45_primary);
-  return (
-    <Component>
-      <Content>
-        <Case {...CaseHulu}></Case>
-        <ReadButton>Read Case Study</ReadButton>
-      </Content>
-    </Component>
   );
 }
