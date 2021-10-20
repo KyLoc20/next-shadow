@@ -11,9 +11,9 @@ import LearnNextCard from "@/components/home/LearnNextCard";
 import SubscribeCard from "@/components/home/SubscribeCard";
 import FooterCard from "@/components/home/FooterCard";
 const Container = styled("section")`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
   position: relative;
   background: #fff;
   width: 100%;

@@ -15,6 +15,7 @@ const parseNumberWithEm = (v: number | undefined) =>
 
 type BasicBoxProps = {
   flexDirection?: "row" | "column"; //by default flex-direction:row
+  flexWrap?: "wrap" | "no-wrap";
   justifyContent?:
     | "flex-start"
     | "center"
@@ -49,6 +50,10 @@ type PaperProps = {
   border?: string;
   borderRadius?: number;
   boxShadow?: string;
+  borderRight?: string;
+  borderLeft?: string;
+  borderTop?: string;
+  borderBottom?: string;
 };
 export type BoxProps = {
   children?: React.ReactNode;
@@ -58,6 +63,7 @@ const BasicBox = styled.div`
   display: ${(props: BoxProps) => (props.notFlex ? "block" : "flex")};
   flex-direction: ${(props: BoxProps) =>
     props.vertical ? "column" : props.flexDirection};
+  flex-wrap: ${(props: BoxProps) => props.flexWrap};
   justify-content: ${(props: BoxProps) => props.justifyContent};
   align-items: ${(props: BoxProps) => props.alignItems};
   align-content: ${(props: BoxProps) => props.alignContent};
@@ -74,6 +80,10 @@ const BasicBox = styled.div`
   //paper
   background: ${(props: BoxProps) => props.background};
   border: ${(props: BoxProps) => props.border};
+  border-right: ${(props: BoxProps) => props.borderRight};
+  border-left: ${(props: BoxProps) => props.borderLeft};
+  border-top: ${(props: BoxProps) => props.borderTop};
+  border-bottom: ${(props: BoxProps) => props.borderBottom};
   border-radius: ${(props: BoxProps) => parseLengthValue(props.borderRadius)};
   box-shadow: ${(props: BoxProps) => props.boxShadow};
 `;

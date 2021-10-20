@@ -37,7 +37,7 @@ export default function CaseStudyEntranceCard(props: CaseStudyEntranceProps) {
 const Component = styled.div`
   width: 100%;
   position: relative;
-  margin-top: -36px;
+  margin-top: -136px;
   margin-bottom: 64px;
 `;
 const CaseHulu = {

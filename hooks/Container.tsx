@@ -1,8 +1,10 @@
 import * as React from "react";
 import { default as Box, BoxProps } from "@/components/generic/Box";
 import { default as Stack, StackProps } from "@/components/generic/Stack";
+//display flex will shrink el to content width
 type CustomBoxProps = {
   vertical?: boolean;
+  wrap?: boolean; //flex-wrap by default "no-wrap"
   overflow?: string; //by default "hidden"
   borderbox?: boolean; //by default box-sizing:"content-box"
   //todo shouldnt be "100%"
@@ -25,6 +27,10 @@ type CustomBoxProps = {
   //paper
   bg?: string;
   b?: string;
+  borderRight?: string;
+  borderLeft?: string;
+  borderTop?: string;
+  borderBottom?: string;
   br?: number;
   bs?: string;
 };
@@ -34,6 +40,7 @@ const genPropsForCustomButton = (props: CustomBoxProps): BoxProps => {
     vertical: props.vertical,
     overflow: props.overflow,
     boxSizing: props.borderbox ? "border-box" : "content-box",
+    flexWrap: props.wrap ? "wrap" : "no-wrap",
     width: props.w,
     height: props.h,
     padding: props.p,
@@ -46,6 +53,10 @@ const genPropsForCustomButton = (props: CustomBoxProps): BoxProps => {
     alignItems: props.AI,
     background: props.bg,
     border: props.b,
+    borderRight: props.borderRight,
+    borderLeft: props.borderLeft,
+    borderTop: props.borderTop,
+    borderBottom: props.borderBottom,
     borderRadius: props.br,
     boxShadow: props.bs,
   };

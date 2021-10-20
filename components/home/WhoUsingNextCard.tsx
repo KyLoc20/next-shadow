@@ -2,12 +2,26 @@ import * as React from "react";
 import styled from "@emotion/styled";
 import { useCustomText, HTMLTag, CustomTextType } from "@/hooks/Text";
 import { useCustomButton, CustomButtonType } from "@/hooks/Button";
+import { useWindowSize } from "@/hooks/Window";
+import { isMobile } from "@/utils/media";
+import { useCustomBox } from "@/hooks/Container";
 import CaseStudyEntranceCard from "./CaseStudyEntranceCard";
 import FamousCaseCard from "./FamousCaseCard";
 type WhoUsingNextCardProps = {
   children?: React.ReactNode;
 };
 export default function WhoUsingNextCard(props: WhoUsingNextCardProps) {
+  const winSize = useWindowSize();
+  const [Content] = useCustomBox({
+    vertical: true,
+    w: undefined,
+    overflow: "visible",
+    AI: "center",
+    p: "100px 0",
+    bg: "rgb(250, 250, 250)",
+    borderTop: "1px solid rgb(234, 234, 234)",
+    borderBottom: "1px solid rgb(234, 234, 234)",
+  });
   const [TitleText] = useCustomText(
     HTMLTag.div,
     CustomTextType.Title_main32,
@@ -21,25 +35,55 @@ export default function WhoUsingNextCard(props: WhoUsingNextCardProps) {
   const [ViewShowcaseButton] = useCustomButton(
     CustomButtonType.Content_h45_primary
   );
-  const caseItems = FamousCases.map((item, index) => (
-    <FamousCaseCard
-      key={index}
-      zIndex={item.zIndex}
-      offsetX={item.offsetX}
-      offsetY={item.offsetY}
-      scale={item.scale}
-      name={item.name}
-      caseLink={item.caseLink}
-      imgUrl={item.imgUrl}
-    />
-  ));
+  const [CaseWrapper] = useCustomBox(
+    isMobile(winSize.width)
+      ? {
+          w: "100%",
+          overflow: "hidden",
+          m: "80px 0 32px",
+          wrap: true,
+        }
+      : {
+          w: "100%",
+          overflow: "hidden",
+          m: "80px 0 0",
+          p: "50px 0 32px",
+          JC: "center",
+        }
+  );
+  const caseItems = isMobile(winSize.width)
+    ? //no transform
+      FamousCases.map((item, index) => (
+        <FamousCaseCard
+          winWidth={winSize.width}
+          key={index}
+          zIndex={1}
+          offsetX={0}
+          offsetY={0}
+          scale={1}
+          name={item.name}
+          caseLink={item.caseLink}
+          imgUrl={item.imgUrl}
+        />
+      ))
+    : //with transform
+      FamousCases.map((item, index) => (
+        <FamousCaseCard
+          winWidth={winSize.width}
+          key={index}
+          zIndex={item.zIndex}
+          offsetX={item.offsetX}
+          offsetY={item.offsetY}
+          scale={item.scale}
+          name={item.name}
+          caseLink={item.caseLink}
+          imgUrl={item.imgUrl}
+        />
+      ));
   return (
     <Component>
-      {/* <EntranceWrapper>
-        <CaseStudyEntranceCard />
-      </EntranceWrapper> */}
-      <CaseStudyEntranceCard />
       <Content>
+        <CaseStudyEntranceCard />
         <Title>
           <TitleText>Who’s Using Next.js</TitleText>
         </Title>
@@ -55,51 +99,20 @@ export default function WhoUsingNextCard(props: WhoUsingNextCardProps) {
     </Component>
   );
 }
-const Component = styled.section`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  background: rgb(250, 250, 250);
-  border-top: 1px solid rgb(234, 234, 234);
-  border-bottom: 1px solid rgb(234, 234, 234);
-`;
-const Content = styled.div`
-  //for content
-  width: 100%;
-  overflow: hidden;
-
-  padding: 100px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+const Component = styled.section``;
 const Title = styled.div`
-  margin: 16px 0;
+  margin-bottom: 16px;
 `;
-const SubTitle = styled.div`
-  margin-bottom: 48px;
-`;
+const SubTitle = styled.div``;
 const CaseWrapper = styled.div`
   display: flex;
   z-index: 10;
   overflow: hidden;
   justify-content: center;
   width: 100%;
-  margin: 64px 0 32px;
+  margin: 80px 0 32px;
   padding-top: 50px;
   height: 185px;
-`;
-const EntranceWrapper = styled.div`
-  //for content
-  width: 100%;
-  overflow: hidden;
-
-  position: relative;
-  margin-top: -36px;
-  margin-bottom: 4rem;
 `;
 const FamousCases = [
   {
