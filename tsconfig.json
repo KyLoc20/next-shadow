@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "jsxImportSource": "@emotion/react",//support for css prop
+    "jsxImportSource": "@emotion/react", //support for css prop
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -16,11 +16,13 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
+      "@/api/*": ["api/*"],
       "@/screens/*": ["screens/*"],
       "@/components/*": ["components/*"],
+      //lib
       "@/hooks/*": ["hooks/*"],
       "@/ui/*": ["ui/*"],
-      "@/api/*": ["api/*"],
+      "@/system/*": ["system/*"],
       "@/utils/*": ["utils/*"],
     },
   },

@@ -72,13 +72,19 @@ const Component = styled.div`
   .name-info {
     opacity: 0;
   }
+  .image {
+    opacity: 0.8;
+    transition: all 0.5s ease;
+  }
   &:hover {
     opacity: 1;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    .name-info {
+    .name-info,
+    .image {
       opacity: 1;
     }
   }
+  background: #fff;
   transition: all 0.5s ease;
   cursor: pointer;
 `;

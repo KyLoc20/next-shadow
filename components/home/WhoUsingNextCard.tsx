@@ -104,16 +104,6 @@ const Title = styled.div`
   margin-bottom: 16px;
 `;
 const SubTitle = styled.div``;
-const CaseWrapper = styled.div`
-  display: flex;
-  z-index: 10;
-  overflow: hidden;
-  justify-content: center;
-  width: 100%;
-  margin: 80px 0 32px;
-  padding-top: 50px;
-  height: 185px;
-`;
 const FamousCases = [
   {
     zIndex: 1,

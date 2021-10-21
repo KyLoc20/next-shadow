@@ -1,18 +1,7 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-function parseLengthValue(
-  v: number | string | undefined,
-  defaultValue?: string
-) {
-  if (v != null) return typeof v === "number" ? parseNumberWithPx(v) : v;
-  else return defaultValue;
-}
-const parseNumberWithPx = (v: number | undefined) =>
-  v != null ? `${v}px` : undefined;
-const parseNumberWithEm = (v: number | undefined) =>
-  v != null ? `${v}em` : undefined;
-
+import { sxProps, parseLengthValue } from "@/system/sx";
 type BasicBoxProps = {
   flexDirection?: "row" | "column"; //by default flex-direction:row
   flexWrap?: "wrap" | "no-wrap";
