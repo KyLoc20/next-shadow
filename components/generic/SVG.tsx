@@ -1,5 +1,26 @@
 import * as React from "react";
 import styled from "@emotion/styled";
+const BasicSVG = styled.svg``;
+type SVGProps = {
+  children?: React.ReactNode;
+  width: number;
+  height: number;
+  viewBox: string;
+  group: GroupProps[];
+};
+export default function SVG(props: SVGProps) {
+  return (
+    <BasicSVG
+      width={`${props.width}px`}
+      height={`${props.height}px`}
+      viewBox={props.viewBox}
+    >
+      {props.group.map((group, index) => (
+        <Group {...group} key={index}></Group>
+      ))}
+    </BasicSVG>
+  );
+}
 type SVGBase = {
   stroke?: string;
   strokeWidth?: number; //todo

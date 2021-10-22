@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "@emotion/styled";
-import * as SVG from "@/components/generic/SVG";
+import SVG from "../generic/SVG";
 import { useCustomButton, CustomButtonType } from "@/hooks/Button";
 import { useWindowSize } from "@/hooks/Window";
 import { isMobile } from "@/utils/media";
@@ -23,12 +23,16 @@ export default function CaseStudyEntranceCard(props: CaseStudyEntranceProps) {
     br: 6,
     bs: "0px 30px 60px rgba(0, 0, 0, 0.12)",
   });
+  const [Case] = useCustomBox({
+    m: isMobile(winSize.width) ? "0 0 16px" : undefined,
+    JC: "center",
+  });
   const [ReadButton] = useCustomButton(CustomButtonType.Content_h45_primary);
-
+  const caseHulu = <SVG {...CaseHulu}></SVG>;
   return (
     <Component>
       <Content>
-        <Case {...CaseHulu}></Case>
+        <Case>{caseHulu}</Case>
         <ReadButton>Read Case Study</ReadButton>
       </Content>
     </Component>
@@ -56,32 +60,3 @@ const CaseHulu = {
     },
   ],
 };
-const CaseWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 140px;
-  opacity: 1;
-  transition: opacity 0.2s ease;
-`;
-type CaseProps = {
-  children?: React.ReactNode;
-  width: number;
-  height: number;
-  viewBox: string;
-  group: SVG.GroupProps[];
-};
-function Case(props: CaseProps) {
-  return (
-    <CaseWrapper>
-      <svg
-        width={`${props.width}px`}
-        height={`${props.height}px`}
-        viewBox={props.viewBox}
-      >
-        {props.group.map((group, index) => (
-          <SVG.Group {...group} key={index}></SVG.Group>
-        ))}
-      </svg>
-    </CaseWrapper>
-  );
-}
