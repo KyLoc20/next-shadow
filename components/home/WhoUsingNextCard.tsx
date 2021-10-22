@@ -12,16 +12,18 @@ type WhoUsingNextCardProps = {
 };
 export default function WhoUsingNextCard(props: WhoUsingNextCardProps) {
   const winSize = useWindowSize();
-  const [Content] = useCustomBox({
-    vertical: true,
-    w: undefined,
-    overflow: "visible",
-    AI: "center",
-    p: "100px 0",
-    bg: "rgb(250, 250, 250)",
-    borderTop: "1px solid rgb(234, 234, 234)",
-    borderBottom: "1px solid rgb(234, 234, 234)",
-  });
+  const [Content] = useCustomBox(
+    {
+      vertical: true,
+      AI: "center",
+    },
+    {
+      p: "100px 0",
+      bg: "rgb(250, 250, 250)",
+      borderTop: "1px solid rgb(234, 234, 234)",
+      borderBottom: "1px solid rgb(234, 234, 234)",
+    }
+  );
   const [TitleText] = useCustomText(
     HTMLTag.div,
     CustomTextType.Title_main32,
@@ -36,20 +38,16 @@ export default function WhoUsingNextCard(props: WhoUsingNextCardProps) {
     CustomButtonType.Content_h45_primary
   );
   const [CaseWrapper] = useCustomBox(
-    isMobile(winSize.width)
-      ? {
-          w: "100%",
-          overflow: "hidden",
-          m: "80px 0 32px",
-          wrap: true,
-        }
-      : {
-          w: "100%",
-          overflow: "hidden",
-          m: "80px 0 0",
-          p: "50px 0 32px",
-          JC: "center",
-        }
+    {
+      JC: isMobile(winSize.width) ? undefined : "center",
+      wrap: isMobile(winSize.width) ? true : false,
+    },
+    {
+      w: "100%",
+      overflow: "hidden",
+      m: isMobile(winSize.width) ? "80px 0 32px" : "80px 0 0",
+      p: isMobile(winSize.width) ? undefined : "50px 0 32px",
+    }
   );
   const caseItems = isMobile(winSize.width)
     ? //no transform

@@ -21,7 +21,7 @@ export default function FeatureCard(props: FeatureProps) {
   );
   const [LinkText] = useCustomText(HTMLTag.span, CustomTextType.Link_primary14);
   const isDescriptionString = typeof props.description === "string";
-  const [DescriptionWrapper] = useCustomBox({ m: "14px 0;" });
+  const [DescriptionWrapper] = useCustomBox({}, { m: "14px 0" });
   const description = isDescriptionString ? (
     <DescriptionWrapper>
       <DescriptionText>{props.description}</DescriptionText>

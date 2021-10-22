@@ -9,14 +9,19 @@ type TopBannerProps = {
 };
 export default function TopBannerCard(props: TopBannerProps) {
   const [DeployText] = useCustomText(HTMLTag.span, CustomTextType.Link_white16);
-  const [Content] = useCustomBox({
-    AI: "center",
-    JC: "space-between",
-    m: "0 auto",
-    p: "0 16px",
-    maxW: 992,
-  });
-
+  const [Content] = useCustomBox(
+    {
+      JC: "space-between",
+      AI: "center",
+    },
+    {
+      w: "100%",
+      overflow: "hidden",
+      m: "0 auto",
+      p: "0 16px",
+      maxWidth: 992,
+    }
+  );
   return (
     <Component>
       <Content>

@@ -11,12 +11,18 @@ type MainHeaderProps = {
 };
 export default function MainHeaderCard(props: MainHeaderProps) {
   const winSize = useWindowSize();
-  const [Content] = useCustomBox({
-    vertical: true,
-    m: "0 auto",
-    p: isMobile(winSize.width) ? "40px 16px 50px" : "120px 16px 30px",
-    maxW: 992,
-  });
+  const [Content] = useCustomBox(
+    {
+      vertical: true,
+    },
+    {
+      w: "100%",
+      overflow: "hidden",
+      m: "0 auto",
+      p: isMobile(winSize.width) ? "40px 16px 50px" : "120px 16px 30px",
+      maxWidth: 992,
+    }
+  );
   const [TitleText] = useCustomText(
     HTMLTag.h1,
     isMobile(winSize.width)

@@ -8,6 +8,58 @@ export type sxProps = SpacingProps &
   TextProps &
   DisplayProps &
   FlexProps;
+type DisplayProps = {
+  display?:
+    | "block"
+    | "inline"
+    | "inline-block"
+    | "flex"
+    | "grid"
+    | "none"
+    | GlobalValue;
+  overflow?: "hidden" | "visible" | "auto" | "scroll" | GlobalValue;
+  visibility?: "hidden" | "visible";
+};
+type FlexProps = {
+  flexDirection?: "row" | "column"; //flex-direction
+  flexWrap?: "wrap" | "nowrap"; //flex-wrap
+  justifyContent?: //justify-content
+  | "flex-start"
+    | "center"
+    | "flex-end"
+    | "space-between"
+    | "space-evenly"
+    | "space-around";
+  alignItems?: "stretch" | "flex-start" | "center" | "flex-end"; //align-items
+  alignContent?: //align-content
+  | "stretch"
+    | "flex-start"
+    | "center"
+    | "flex-end"
+    | "space-between"
+    | "space-evenly"
+    | "space-around";
+  flexGrow?: string; //flex-grow
+  flexShrink?: string; //flex-shrink
+  flex?: string; //flex
+};
+type PositionProps = {
+  position?: "relative" | "absolute" | "fixed" | "sticky";
+  zIndex?: number; //z-index
+  top?: LengthValue;
+  right?: LengthValue;
+  bottom?: LengthValue;
+  left?: LengthValue;
+};
+type SizingProps = {
+  boxSizing?: "border-box" | "content-box";
+  w?: LengthValue;
+  h?: LengthValue;
+  minWidth?: LengthValue; //min-width
+  maxWidth?: LengthValue; //max-width
+  minHeight?: LengthValue; //min-height
+  maxHeight?: LengthValue; //max-height
+};
 type SpacingProps = {
   m?: string; //margin
   mt?: string; //margin-top
@@ -34,64 +86,12 @@ type PaperProps = {
   borderRadius?: number; //border-radius
   boxShadow?: string; //box-shadow
 };
-type SizingProps = {
-  boxSizing?: "border-box" | "content-box";
-  width?: LengthValue;
-  height?: LengthValue;
-  minWidth?: LengthValue; //min-width
-  maxWidth?: LengthValue; //max-width
-  minHeight?: LengthValue; //min-height
-  maxHeight?: LengthValue; //max-height
-};
-type PositionProps = {
-  position?: "relative" | "absolute" | "fixed" | "sticky";
-  zIndex?: number; //z-index
-  top?: LengthValue;
-  right?: LengthValue;
-  bottom?: LengthValue;
-  left?: LengthValue;
-};
 type TextProps = {
   textAlign?: "left" | "right" | "center" | "start" | "end" | "justify"; //text-align
   lineHeight?: LengthValue; //line-height
   fontSize?: LengthValue; //font-size
   fontWeight?: number | string; //font-weight
   letterSpacing?: LengthValue; //letter-spacing
-};
-type DisplayProps = {
-  display:
-    | "block"
-    | "inline"
-    | "inline-block"
-    | "flex"
-    | "grid"
-    | "none"
-    | GlobalValue;
-  overflow: "hidden" | "visible" | "auto" | "scroll" | GlobalValue;
-  visibility: "hidden" | "visible";
-};
-type FlexProps = {
-  flexDirection?: "row" | "column"; //flex-direction
-  flexWrap?: "wrap" | "no-wrap"; //flex-wrap
-  justifyContent?: //justify-content
-  | "flex-start"
-    | "center"
-    | "flex-end"
-    | "space-between"
-    | "space-evenly"
-    | "space-around";
-  alignItems?: "stretch" | "flex-start" | "center" | "flex-end"; //align-items
-  alignContent?: //align-content
-  | "stretch"
-    | "flex-start"
-    | "center"
-    | "flex-end"
-    | "space-between"
-    | "space-evenly"
-    | "space-around";
-  flexGrow?: string; //flex-grow
-  flexShrink?: string; //flex-shrink
-  flex?: string; //flex-wrap
 };
 type GridProps = {};
 //A LengthValue could be:
@@ -100,9 +100,18 @@ type GridProps = {};
 //3. number 100 200 -> parse number with "px"
 type LengthValue = number | string | "inherit";
 type GlobalValue = "inherit" | "initial" | "revert" | "unset";
+
+export type JustifyContentValue =
+  | "flex-start"
+  | "center"
+  | "flex-end"
+  | "space-between"
+  | "space-evenly"
+  | "space-around";
+export type AlignItemsValue = "stretch" | "flex-start" | "center" | "flex-end";
 const parseNumberWithPx = (v: number | undefined) =>
   v != null ? `${v}px` : undefined;
-const parseNumberWithEm = (v: number | undefined) =>
+export const parseNumberWithEm = (v: number | undefined) =>
   v != null ? `${v}em` : undefined;
 export function parseLengthValue(
   v: LengthValue | undefined,

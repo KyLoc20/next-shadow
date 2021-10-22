@@ -10,23 +10,32 @@ type CaseStudyEntranceProps = {
 };
 export default function CaseStudyEntranceCard(props: CaseStudyEntranceProps) {
   const winSize = useWindowSize();
-  const [Content] = useCustomBox({
-    vertical: isMobile(winSize.width) ? true : false,
-    m: "0 auto",
-    p: "16px",
-    w: isMobile(winSize.width) ? "90%" : "100%",
-    maxW: isMobile(winSize.width) ? "100%" : 450,
-    borderbox: true,
-    JC: "space-between",
-    AI: "center",
-    bg: "#ffffff",
-    br: 6,
-    bs: "0px 30px 60px rgba(0, 0, 0, 0.12)",
-  });
-  const [Case] = useCustomBox({
-    m: isMobile(winSize.width) ? "0 0 16px" : undefined,
-    JC: "center",
-  });
+  const [Content] = useCustomBox(
+    {
+      vertical: isMobile(winSize.width) ? true : false,
+      borderbox: true,
+      JC: "space-between",
+      AI: "center",
+    },
+    {
+      w: isMobile(winSize.width) ? "90%" : "100%",
+      maxWidth: isMobile(winSize.width) ? "100%" : 450,
+      overflow: "hidden",
+      m: "0 auto",
+      p: "16px",
+      bg: "#ffffff",
+      borderRadius: 6,
+      boxShadow: "0px 30px 60px rgba(0, 0, 0, 0.12)",
+    }
+  );
+  const [Case] = useCustomBox(
+    {
+      JC: "center",
+    },
+    {
+      m: isMobile(winSize.width) ? "0 0 16px" : undefined,
+    }
+  );
   const [ReadButton] = useCustomButton(CustomButtonType.Content_h45_primary);
   const caseHulu = <SVG {...CaseHulu}></SVG>;
   return (

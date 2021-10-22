@@ -1,72 +1,39 @@
 import * as React from "react";
 import { default as Box, BoxProps } from "@/components/generic/Box";
 import { default as Stack, StackProps } from "@/components/generic/Stack";
+import { sxProps, JustifyContentValue, AlignItemsValue } from "@/system/sx";
+
 //display flex will shrink el to content width
 type CustomBoxProps = {
-  vertical?: boolean;
-  wrap?: boolean; //flex-wrap by default "no-wrap"
-  overflow?: string; //by default "hidden"
-  borderbox?: boolean; //by default box-sizing:"content-box"
-  //todo shouldnt be "100%"
-  w?: number | string; //by default "100%"
-  h?: number | string; //"100%"
-  p?: string;
-  m?: string;
-  minW?: number | string;
-  maxW?: number | string;
-  minH?: number | string;
-  maxH?: number | string;
-  JC?:
-    | "flex-start"
-    | "center"
-    | "flex-end"
-    | "space-between"
-    | "space-evenly"
-    | "space-around";
-  AI?: "stretch" | "flex-start" | "center" | "flex-end";
-  //paper
-  bg?: string;
-  b?: string;
-  borderRight?: string;
-  borderLeft?: string;
-  borderTop?: string;
-  borderBottom?: string;
-  br?: number;
-  bs?: string;
+  vertical?: boolean; //shortcut for flex-direction by default "row"
+  wrap?: boolean; //shortcut for flex-wrap by default "no-wrap"
+  borderbox?: boolean; //shortcut for box-sizing by default "content-box"
+  JC?: JustifyContentValue; //shortcut for justify-content
+  AI?: AlignItemsValue; //shortcut for align-items
 };
-
-const genPropsForCustomButton = (props: CustomBoxProps): BoxProps => {
+//to provide some shortcuts and default settings as for a custom
+const genPropsForCustomBox = (
+  custom: CustomBoxProps,
+  sx: sxProps
+): BoxProps => {
   return {
-    vertical: props.vertical,
-    overflow: props.overflow,
-    boxSizing: props.borderbox ? "border-box" : "content-box",
-    flexWrap: props.wrap ? "wrap" : "no-wrap",
-    width: props.w,
-    height: props.h,
-    padding: props.p,
-    margin: props.m,
-    minWidth: props.minW,
-    maxWidth: props.maxW,
-    minHeight: props.minH,
-    maxHeight: props.maxH,
-    justifyContent: props.JC,
-    alignItems: props.AI,
-    background: props.bg,
-    border: props.b,
-    borderRight: props.borderRight,
-    borderLeft: props.borderLeft,
-    borderTop: props.borderTop,
-    borderBottom: props.borderBottom,
-    borderRadius: props.br,
-    boxShadow: props.bs,
+    //for now it is FlexBox by default
+    display: "flex",
+    flexDirection: custom.vertical ? "column" : undefined,
+    flexWrap: custom.wrap ? "wrap" : undefined,
+    boxSizing: custom.borderbox ? "border-box" : undefined,
+    justifyContent: custom.JC,
+    alignItems: custom.AI,
+    ...sx,
   };
 };
-function useCustomBox(custom: CustomBoxProps) {
+function useCustomBox(custom: CustomBoxProps, sx: sxProps = {}) {
   const renderBox = (props: BoxProps) => (
-    <Box {...genPropsForCustomButton(custom)}>{props.children}</Box>
+    <Box {...genPropsForCustomBox(custom, sx)}>{props.children}</Box>
   );
   return [renderBox];
 }
+
 type CustomStackProps = {
   p?: string; //padding
   ep?: string; //eachPadding

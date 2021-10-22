@@ -11,12 +11,18 @@ type WhyNextProps = {
 };
 export default function WhyNextCard(props: WhyNextProps) {
   const winSize = useWindowSize();
-  const [Content] = useCustomBox({
-    vertical: true,
-    m: "0 auto",
-    p: isMobile(winSize.width) ? "64px 16px" : "100px 16px",
-    maxW: 992,
-  });
+  const [Content] = useCustomBox(
+    {
+      vertical: true,
+    },
+    {
+      w: "100%",
+      overflow: "hidden",
+      m: "0 auto",
+      p: isMobile(winSize.width) ? "64px 16px" : "100px 16px",
+      maxWidth: 992,
+    }
+  );
   const [TitleText] = useCustomText(
     HTMLTag.div,
     CustomTextType.Title_main32,
@@ -93,10 +99,14 @@ function AndMore(props: AndMoreProps) {
       , and more.
     </MoreText>
   );
-  const [More] = useCustomBox({
-    JC: "center",
-    m: props.isMobile ? "24px 0 0" : "40px 0",
-  });
+  const [More] = useCustomBox(
+    {
+      JC: "center",
+    },
+    {
+      m: props.isMobile ? "24px 0 0" : "40px 0",
+    }
+  );
   if (props.isMobile)
     return (
       <More>
