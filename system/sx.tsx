@@ -23,14 +23,10 @@ type DisplayProps = {
 type FlexProps = {
   flexDirection?: "row" | "column"; //flex-direction
   flexWrap?: "wrap" | "nowrap"; //flex-wrap
-  justifyContent?: //justify-content
-  | "flex-start"
-    | "center"
-    | "flex-end"
-    | "space-between"
-    | "space-evenly"
-    | "space-around";
-  alignItems?: "stretch" | "flex-start" | "center" | "flex-end"; //align-items
+  JC?: JustifyContentValue; //justify-content shortcut
+  justifyContent?: JustifyContentValue; //justify-content
+  AI?: AlignItemsValue; //align-items shortcut
+  alignItems?: AlignItemsValue; //align-items
   alignContent?: //align-content
   | "stretch"
     | "flex-start"

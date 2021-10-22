@@ -16,8 +16,8 @@ const BasicBox = styled.div`
 
   flex-direction: ${(props: BoxProps) => props.flexDirection};
   flex-wrap: ${(props: BoxProps) => props.flexWrap};
-  justify-content: ${(props: BoxProps) => props.justifyContent};
-  align-items: ${(props: BoxProps) => props.alignItems};
+  justify-content: ${(props: BoxProps) => props.justifyContent || props.JC};
+  align-items: ${(props: BoxProps) => props.alignItems || props.AI};
   align-content: ${(props: BoxProps) => props.alignContent};
   flex-grow: ${(props: BoxProps) => props.flexGrow};
   flex-shrink: ${(props: BoxProps) => props.flexShrink};
@@ -64,29 +64,3 @@ const BasicBox = styled.div`
   font-weight: ${(props: BoxProps) => props.fontWeight};
   letter-spacing: ${(props: BoxProps) => parseLengthValue(props.letterSpacing)};
 `;
-// display: ${(props: BoxProps) => (props.notFlex ? "block" : "flex")};
-// flex-direction: ${(props: BoxProps) =>
-//   props.vertical ? "column" : props.flexDirection};
-// flex-wrap: ${(props: BoxProps) => props.flexWrap};
-// justify-content: ${(props: BoxProps) => props.justifyContent};
-// align-items: ${(props: BoxProps) => props.alignItems};
-// align-content: ${(props: BoxProps) => props.alignContent};
-// box-sizing: ${(props: BoxProps) => props.boxSizing};
-// width: ${(props: BoxProps) => parseLengthValue(props.width, "100%")};
-// height: ${(props: BoxProps) => parseLengthValue(props.height)};
-// min-width: ${(props: BoxProps) => parseLengthValue(props.minWidth)};
-// min-height: ${(props: BoxProps) => parseLengthValue(props.minHeight)};
-// max-width: ${(props: BoxProps) => parseLengthValue(props.maxWidth)};
-// max-height: ${(props: BoxProps) => parseLengthValue(props.maxHeight)};
-// padding: ${(props: BoxProps) => props.padding};
-// margin: ${(props: BoxProps) => props.margin};
-// overflow: ${(props: BoxProps) => props.overflow || "hidden"};
-// //paper
-// background: ${(props: BoxProps) => props.background};
-// border: ${(props: BoxProps) => props.border};
-// border-right: ${(props: BoxProps) => props.borderRight};
-// border-left: ${(props: BoxProps) => props.borderLeft};
-// border-top: ${(props: BoxProps) => props.borderTop};
-// border-bottom: ${(props: BoxProps) => props.borderBottom};
-// border-radius: ${(props: BoxProps) => parseLengthValue(props.borderRadius)};
-// box-shadow: ${(props: BoxProps) => props.boxShadow};
