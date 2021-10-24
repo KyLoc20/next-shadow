@@ -8,7 +8,9 @@ type TopBannerProps = {
   children?: React.ReactNode;
 };
 export default function TopBannerCard(props: TopBannerProps) {
-  const [DeployText] = useCustomText(HTMLTag.span, CustomTextType.Link_white16);
+  const [DeployText] = useCustomText(HTMLTag.p, CustomTextType.Link_white16, {
+    lineHeight: 26.4,
+  });
   const [Content] = useCustomBox(
     {
       JC: "space-between",

@@ -8,15 +8,16 @@ type SubscribeProps = {
   children?: React.ReactNode;
 };
 export default function SubscribeCard(props: SubscribeProps) {
-  const [TitleText] = useCustomText(
-    HTMLTag.div,
-    CustomTextType.Title_main32,
-    "left"
-  );
-  const [DescriptionText] = useCustomText(
+  const [Title] = useCustomText(HTMLTag.div, CustomTextType.Title_default32, {
+    lineHeight: "1.2",
+    mb: "12.8px",
+  });
+  const [Description] = useCustomText(
     HTMLTag.div,
     CustomTextType.Content_default16,
-    "left"
+    {
+      lineHeight: "1.8",
+    }
   );
   const [SubscribeButton] = useCustomButton(
     CustomButtonType.Content_h45_default
@@ -33,16 +34,12 @@ export default function SubscribeCard(props: SubscribeProps) {
       <Content>
         <Wrapper>
           <Title>
-            <TitleText>
-              Next.js is getting better every day — don’t miss out on all the
-              action.
-            </TitleText>
+            Next.js is getting better every day — don’t miss out on all the
+            action.
           </Title>
           <Description>
-            <DescriptionText>
-              Join the Next.js newsletter and stay updated on new releases and
-              features, guides, and case studies.
-            </DescriptionText>
+            Join the Next.js newsletter and stay updated on new releases and
+            features, guides, and case studies.
           </Description>
         </Wrapper>
         <Wrapper>
@@ -89,10 +86,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: flex-end;
 `;
-const Title = styled.div`
-  margin-bottom: 12.8px;
-`;
-const Description = styled.div``;
+
 const Form = styled.div`
   width: 240px;
   height: 90px;

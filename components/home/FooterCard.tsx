@@ -9,7 +9,8 @@ type FooterProps = {
 export default function FooterCard(props: FooterProps) {
   const [CopyrightText] = useCustomText(
     HTMLTag.p,
-    CustomTextType.Content_light12
+    CustomTextType.Content_light12,
+    { mt: "8px" }
   );
   return (
     <Component>
@@ -42,17 +43,20 @@ type NavigationProps = {
   title: string;
 };
 function NavigationCard(props: NavigationProps) {
-  const [TitleText] = useCustomText(HTMLTag.h4, CustomTextType.Title_default14);
+  const [TitleText] = useCustomText(
+    HTMLTag.h4,
+    CustomTextType.Title_default14,
+    { m: "19px 0 12px" }
+  );
   const [NavigationText] = useCustomText(
-    HTMLTag.span,
-    CustomTextType.Link_navigation14
+    HTMLTag.p,
+    CustomTextType.Link_light14,
+    { mb: "4px", lineHeight: 23 }
   );
 
   const navigationItems = props.items.map((item, index) => (
     <Link href={item.link} key={index}>
-      <p>
-        <NavigationText>{item.name}</NavigationText>
-      </p>
+      <NavigationText>{item.name}</NavigationText>
     </Link>
   ));
   return (
@@ -90,18 +94,8 @@ const Grid = styled.div`
 `;
 const CopyRight = styled.div`
   margin-top: 48px;
-  p {
-    margin-top: 8px;
-  }
 `;
-const NavigationList = styled.div`
-  h4 {
-    margin: 19px 0 12px;
-  }
-  p {
-    margin-bottom: 4px;
-  }
-`;
+const NavigationList = styled.div``;
 const NavigationGeneral: NavigationProps = {
   title: "General Resources",
   items: [

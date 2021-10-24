@@ -12,12 +12,12 @@ type FeatureProps = {
 };
 export default function FeatureCard(props: FeatureProps) {
   const [TitleText] = useCustomText(
-    HTMLTag.span,
-    CustomTextType.Content_highlight18
+    HTMLTag.div,
+    CustomTextType.Content_default18_bold
   );
   const [DescriptionText] = useCustomText(
     HTMLTag.span,
-    CustomTextType.Content_normal14
+    CustomTextType.Content_default14
   );
   const [LinkText] = useCustomText(HTMLTag.span, CustomTextType.Link_primary14);
   const isDescriptionString = typeof props.description === "string";
@@ -32,9 +32,8 @@ export default function FeatureCard(props: FeatureProps) {
   return (
     <Component>
       <Link href={props.docLink}>
-        <Title>
-          <TitleText>{props.title}</TitleText>
-        </Title>
+        <TitleText>{props.title}</TitleText>
+
         {description}
         {props.docLink && (
           <Documentation className="doc">

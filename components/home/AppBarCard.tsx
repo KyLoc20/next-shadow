@@ -13,10 +13,9 @@ type AppBarProps = {
 //todo menu
 export default function AppBarCard(props: AppBarProps) {
   const winSize = useWindowSize();
-  const [LinkText] = useCustomText(
-    HTMLTag.span,
-    CustomTextType.Link_navigation16
-  );
+  const [LinkText] = useCustomText(HTMLTag.span, CustomTextType.Link_light16, {
+    ml: "16px",
+  });
   const navigationMenuItems = [
     "Showcase",
     "Docs",
@@ -109,6 +108,4 @@ function Logo() {
     </span>
   );
 }
-const Navigation = styled.a`
-  margin-left: 16px;
-`;
+const Navigation = styled.a``;

@@ -23,19 +23,26 @@ export default function MainHeaderCard(props: MainHeaderProps) {
       maxWidth: 992,
     }
   );
-  const [TitleText] = useCustomText(
+  const [Title] = useCustomText(
     HTMLTag.h1,
     isMobile(winSize.width)
       ? CustomTextType.Title_default48
       : CustomTextType.Title_default100,
-    "center"
+    {
+      mb: "30px",
+      textAlign: "center",
+    }
   );
-  const [DescriptionText] = useCustomText(
+  const [Description] = useCustomText(
     HTMLTag.h3,
     isMobile(winSize.width)
-      ? CustomTextType.Description_light16
-      : CustomTextType.Description_light20,
-    "center"
+      ? CustomTextType.Content_lightC16
+      : CustomTextType.Content_lightC20,
+    {
+      lineHeight: "1.6",
+      mb: "40px",
+      textAlign: "center",
+    }
   );
   const [StartLearningButton] = useCustomButton(
     CustomButtonType.Content_h45_primary
@@ -43,10 +50,9 @@ export default function MainHeaderCard(props: MainHeaderProps) {
   const [DocumentationButton] = useCustomButton(
     CustomButtonType.Content_h45_plain
   );
-  const [LicenseText] = useCustomText(
-    HTMLTag.span,
-    CustomTextType.Content_normal16
-  );
+  const [License] = useCustomText(HTMLTag.span, CustomTextType.Title_lightB16, {
+    p: "0 8px",
+  });
   const [GithubButton] = useCustomButton(
     CustomButtonType.Content_h34_primary_text
   );
@@ -55,16 +61,12 @@ export default function MainHeaderCard(props: MainHeaderProps) {
   return (
     <Component>
       <Content>
-        <Title>
-          <TitleText>The React Framework for Production</TitleText>
-        </Title>
+        <Title>The React Framework for Production</Title>
         <Description>
-          <DescriptionText>
-            Next.js gives you the best developer experience with all the
-            features you need for production: hybrid static & server rendering,
-            TypeScript support, smart bundling, route pre-fetching, and more. No
-            config needed.
-          </DescriptionText>
+          Next.js gives you the best developer experience with all the features
+          you need for production: hybrid static & server rendering, TypeScript
+          support, smart bundling, route pre-fetching, and more. No config
+          needed.
         </Description>
         <ButtonWrapper>
           <StartLearningButton>Start Learning</StartLearningButton>
@@ -72,9 +74,7 @@ export default function MainHeaderCard(props: MainHeaderProps) {
         </ButtonWrapper>
         <OtherInfo>
           <Link href="https://github.com/vercel/next.js/blob/canary/license.md">
-            <License>
-              <LicenseText>License: MIT</LicenseText>
-            </License>
+            <License>License: MIT</License>
           </Link>
           <GithubButton>Github</GithubButton>
         </OtherInfo>
@@ -88,20 +88,4 @@ const Component = styled.section`
   justify-content: center;
   width: 100%; //width: 992px;
   margin: 0 auto;
-`;
-const Title = styled.div`
-  margin-bottom: 30px;
-`;
-const Description = styled.div`
-  margin-bottom: 40px;
-`;
-const ButtonWarpper = styled.div`
-  margin-bottom: 30px;
-  button:not(:last-of-type) {
-    margin-right: 20px;
-  }
-`;
-const OtherInfo = styled.div``;
-const License = styled.span`
-  padding: 0 8px;
 `;

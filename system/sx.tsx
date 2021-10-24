@@ -1,5 +1,5 @@
 import * as React from "react";
-import styled from "@emotion/styled";
+import styled, { StyledComponent } from "@emotion/styled";
 import { css } from "@emotion/react";
 export type sxProps = SpacingProps &
   PaperProps &
@@ -118,4 +118,63 @@ export function parseLengthValue(
     return typeof defaultValue === "number"
       ? parseNumberWithPx(defaultValue)
       : defaultValue;
+}
+export function createStyleComponent<T extends sxProps>(
+  baseComponent: StyledComponent<{}>
+) {
+  return styled(baseComponent)`
+    display: ${(props: T) => props.display};
+    overflow: ${(props: T) => props.overflow};
+    visibility: ${(props: T) => props.visibility};
+
+    flex-direction: ${(props: T) => props.flexDirection};
+    flex-wrap: ${(props: T) => props.flexWrap};
+    justify-content: ${(props: T) => props.justifyContent || props.JC};
+    align-items: ${(props: T) => props.alignItems || props.AI};
+    align-content: ${(props: T) => props.alignContent};
+    flex-grow: ${(props: T) => props.flexGrow};
+    flex-shrink: ${(props: T) => props.flexShrink};
+    flex: ${(props: T) => props.flex};
+
+    position: ${(props: T) => props.position};
+    z-index: ${(props: T) => props.zIndex};
+    top: ${(props: T) => props.top};
+    right: ${(props: T) => props.right};
+    bottom: ${(props: T) => props.bottom};
+    left: ${(props: T) => props.left};
+
+    box-sizing: ${(props: T) => props.boxSizing};
+    width: ${(props: T) => parseLengthValue(props.w)};
+    height: ${(props: T) => parseLengthValue(props.h)};
+    min-width: ${(props: T) => parseLengthValue(props.minWidth)};
+    min-height: ${(props: T) => parseLengthValue(props.minHeight)};
+    max-width: ${(props: T) => parseLengthValue(props.maxWidth)};
+    max-height: ${(props: T) => parseLengthValue(props.maxHeight)};
+
+    margin: ${(props: T) => props.m};
+    margin-top: ${(props: T) => props.my || props.mt};
+    margin-right: ${(props: T) => props.mx || props.mr};
+    margin-bottom: ${(props: T) => props.my || props.mb};
+    margin-left: ${(props: T) => props.mx || props.ml};
+    padding: ${(props: T) => props.p};
+    padding-top: ${(props: T) => props.py || props.pt};
+    padding-right: ${(props: T) => props.px || props.pr};
+    padding-bottom: ${(props: T) => props.py || props.pb};
+    padding-left: ${(props: T) => props.px || props.pl};
+
+    background: ${(props: T) => props.bg};
+    border: ${(props: T) => props.border};
+    border-top: ${(props: T) => props.borderTop};
+    border-right: ${(props: T) => props.borderRight};
+    border-bottom: ${(props: T) => props.borderBottom};
+    border-left: ${(props: T) => props.borderLeft};
+    border-radius: ${(props: T) => parseLengthValue(props.borderRadius)};
+    box-shadow: ${(props: T) => props.boxShadow};
+
+    text-align: ${(props: T) => props.textAlign};
+    line-height: ${(props: T) => parseLengthValue(props.lineHeight)};
+    font-size: ${(props: T) => parseLengthValue(props.fontSize)};
+    font-weight: ${(props: T) => props.fontWeight};
+    letter-spacing: ${(props: T) => parseLengthValue(props.letterSpacing)};
+  `;
 }

@@ -24,19 +24,7 @@ export default function WhoUsingNextCard(props: WhoUsingNextCardProps) {
       borderBottom: "1px solid rgb(234, 234, 234)",
     }
   );
-  const [TitleText] = useCustomText(
-    HTMLTag.div,
-    CustomTextType.Title_main32,
-    "center"
-  );
-  const [SubTitleText] = useCustomText(
-    HTMLTag.div,
-    CustomTextType.Title_main16,
-    "center"
-  );
-  const [ViewShowcaseButton] = useCustomButton(
-    CustomButtonType.Content_h45_primary
-  );
+
   const [CaseWrapper] = useCustomBox(
     {
       JC: isMobile(winSize.width) ? undefined : "center",
@@ -78,11 +66,44 @@ export default function WhoUsingNextCard(props: WhoUsingNextCardProps) {
           imgUrl={item.imgUrl}
         />
       ));
+
+  const [TextWrapper] = useCustomBox(
+    {
+      vertical: true,
+      AI: "center",
+      borderbox: true,
+    },
+    {
+      w: "100%",
+      overflow: "hidden",
+      m: "0 auto",
+      p: "0 10px",
+      maxWidth: 1024,
+    }
+  );
+  const [Title] = useCustomText(HTMLTag.div, CustomTextType.Title_default32, {
+    mb: "16px",
+    lineHeight: "1.3",
+  });
+  const [SubTitle] = useCustomText(HTMLTag.div, CustomTextType.Title_lightB16, {
+    lineHeight: "1.65",
+  });
+  const [ViewShowcaseButton] = useCustomButton(
+    CustomButtonType.Content_h45_primary
+  );
   return (
     <Component>
       <Content>
         <CaseStudyEntranceCard />
-        <Title>
+        <TextWrapper>
+          <Title>Who’s Using Next.js</Title>
+          <SubTitle>
+            We’re honored some of the most talented creatives out there build
+            with Next.js
+          </SubTitle>
+        </TextWrapper>
+
+        {/* <Title>
           <TitleText>Who’s Using Next.js</TitleText>
         </Title>
         <SubTitle>
@@ -90,7 +111,7 @@ export default function WhoUsingNextCard(props: WhoUsingNextCardProps) {
             We’re honored some of the most talented creatives out there build
             with Next.js
           </SubTitleText>
-        </SubTitle>
+        </SubTitle> */}
         <CaseWrapper>{caseItems}</CaseWrapper>
         <ViewShowcaseButton>View Showcase</ViewShowcaseButton>
       </Content>
@@ -98,10 +119,7 @@ export default function WhoUsingNextCard(props: WhoUsingNextCardProps) {
   );
 }
 const Component = styled.section``;
-const Title = styled.div`
-  margin-bottom: 16px;
-`;
-const SubTitle = styled.div``;
+
 const FamousCases = [
   {
     zIndex: 1,

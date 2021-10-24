@@ -6,14 +6,16 @@ type TopNewsProps = {
   children?: React.ReactNode;
 };
 export default function TopNewsCard(props: TopNewsProps) {
-  const [BadgeText] = useCustomText(HTMLTag.span, CustomTextType.Badge);
+  const [BadgeText] = useCustomText(HTMLTag.span, CustomTextType.Badge, {
+    lineHeight: 21,
+  });
   const [HighlightText] = useCustomText(
     HTMLTag.span,
-    CustomTextType.Content_highlight14
+    CustomTextType.Content_default14_bold
   );
   const [ContentText] = useCustomText(
     HTMLTag.span,
-    CustomTextType.Content_normal14
+    CustomTextType.Content_default14
   );
   return (
     <Component>

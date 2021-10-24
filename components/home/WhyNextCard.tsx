@@ -23,16 +23,14 @@ export default function WhyNextCard(props: WhyNextProps) {
       maxWidth: 992,
     }
   );
-  const [TitleText] = useCustomText(
-    HTMLTag.div,
-    CustomTextType.Title_main32,
-    "center"
-  );
-  const [SubTitleText] = useCustomText(
-    HTMLTag.div,
-    CustomTextType.Title_main16,
-    "center"
-  );
+  const [Title] = useCustomText(HTMLTag.div, CustomTextType.Title_default32, {
+    mb: "16px 0",
+    lineHeight: "1.3",
+  });
+  const [SubTitle] = useCustomText(HTMLTag.div, CustomTextType.Title_lightB16, {
+    mb: "48px",
+    lineHeight: "1.65",
+  });
   const featureItems = features.map((item, index) => (
     <FeatureCard
       key={index}
@@ -45,14 +43,8 @@ export default function WhyNextCard(props: WhyNextProps) {
   return (
     <Component>
       <Content>
-        <Title>
-          <TitleText>Why Next.js</TitleText>{" "}
-        </Title>
-        <SubTitle>
-          <SubTitleText>
-            The world’s leading companies use and love Next.js
-          </SubTitleText>
-        </SubTitle>
+        <Title>Why Next.js</Title>
+        <SubTitle>The world’s leading companies use and love Next.js</SubTitle>
         <FeatureGrid
           style={{
             gridTemplateColumns: isMobile(winSize.width)
@@ -74,8 +66,8 @@ type AndMoreProps = {
 function AndMore(props: AndMoreProps) {
   const [MoreText] = useCustomText(
     HTMLTag.div,
-    CustomTextType.Content_normal14,
-    props.isMobile ? "left" : "center"
+    CustomTextType.Content_default14,
+    { textAlign: props.isMobile ? "left" : "center" }
   );
   const [LinkText] = useCustomText(HTMLTag.span, CustomTextType.Link_primary14);
   const innerContent = (
@@ -122,12 +114,7 @@ const Component = styled.section`
   width: 100%; //width: 992px;
   margin: 0 auto;
 `;
-const Title = styled.div`
-  margin: 16px 0;
-`;
-const SubTitle = styled.div`
-  margin-bottom: 48px;
-`;
+
 const FeatureGrid = styled.div`
   margin: 0 auto;
   max-width: 992px;

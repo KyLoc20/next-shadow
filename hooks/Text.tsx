@@ -49,56 +49,19 @@ function useCustomText(
   };
   return [renderText];
 }
-// function useCustomText(
-//   tagType: HTMLTag,
-//   which: CustomTextType,
-//   textAlign?: TextAlign
-// ) {
-//   const customTextProps = CUSTOM_FACTORY[which];
-//   const TextComponent = TEXT_FACTORY[tagType];
-//   const renderText = (props: Text.TextProps) => {
-//     return (
-//       <TextComponent
-//         fontSize={customTextProps.fontSize}
-//         fontWeight={customTextProps.fontWeight}
-//         lineHeight={customTextProps.lineHeight}
-//         letterSpacing={customTextProps.letterSpacing}
-//         color={customTextProps.color}
-//         hoverColor={customTextProps.hoverColor}
-//         hoverUnderlined={customTextProps.hoverUnderlined}
-//         textAlign={textAlign}
-//       >
-//         {props.children}
-//       </TextComponent>
-//     );
-//   };
-//   return [renderText];
-// }
 export { HTMLTag, CustomTextType, useCustomText };
 type CustomTextProps = Text.TextLocalProps;
 enum CustomTextType {
-  //theme default dark light primary white
-  Link_light16,
-  Link_navigation16,
-  Link_navigation14,
-  Link_white16,
-
-  Title_main,
-  Title_main32,
-  Title_main16,
-
-  Description_light20,
-  Description_light16,
-
-  Content_normal14,
-  Content_highlight14,
-  Content_normal16,
-  Badge,
-  Content_highlight18,
-
-  //checked
+  //default "#111111"
+  //white "#ffffff"
+  //primary "#067df7"
+  //light "8c8c8c"
+  //lightB "696969"
+  //lightC "666666"
   Link_primary14,
   Link_light14,
+  Link_light16,
+  Link_white16,
 
   Title_default14,
   Title_default32,
@@ -109,76 +72,18 @@ enum CustomTextType {
   Content_light12,
   Content_default14,
   Content_default16,
+  Content_default14_bold,
   Content_default18_bold,
+  Content_lightC20,
+  Content_lightC16,
+
+  Badge,
 }
 type CustomTextFactory = {
   [key in CustomTextType]: CustomTextProps;
 };
-//default "#111111"
-//
-//primary "#067df7"
-//light "8c8c8c"
-//lightB "696969"
+
 const CUSTOM_FACTORY: CustomTextFactory = {
-  [CustomTextType.Link_light16]: {
-    fontSize: 16,
-    fontWeight: 400,
-    lineHeight: 26,
-    color: "#696969", //rgb(105, 105, 105)
-  },
-  [CustomTextType.Link_navigation16]: {
-    fontSize: 16,
-    fontWeight: 400,
-    lineHeight: 26,
-    color: "#696969", //rgb(105, 105, 105)
-  },
-
-  [CustomTextType.Link_white16]: {
-    fontSize: 16,
-    fontWeight: 400,
-    color: "#fff",
-    lineHeight: 26,
-  },
-
-  [CustomTextType.Title_main]: {
-    fontSize: 100,
-    fontWeight: 800,
-    lineHeight: 100,
-    letterSpacing: -0.05,
-    color: "#111111", //rgb(17, 17, 17)
-  },
-
-  [CustomTextType.Description_light20]: {
-    fontSize: 20,
-    fontWeight: 400,
-    lineHeight: 32,
-    color: "#666666",
-  },
-  [CustomTextType.Description_light16]: {
-    fontSize: 16,
-    fontWeight: 400,
-    lineHeight: 26,
-    color: "#666666",
-  },
-
-  [CustomTextType.Content_normal16]: {
-    fontSize: 16,
-    fontWeight: 400,
-    lineHeight: 20,
-    color: "#696969",
-  },
-
-  [CustomTextType.Content_highlight14]: {
-    fontSize: 14,
-    fontWeight: 600,
-    color: "#111111",
-  },
-  [CustomTextType.Badge]: {
-    fontSize: 12.6,
-    fontWeight: 600,
-    lineHeight: 21,
-    color: "#fff",
-  },
   //Title
   [CustomTextType.Title_default100]: {
     fontSize: 100,
@@ -207,6 +112,7 @@ const CUSTOM_FACTORY: CustomTextFactory = {
     fontWeight: 400,
     color: "#696969",
   },
+
   //Content
   [CustomTextType.Content_default14]: {
     fontSize: 14,
@@ -216,6 +122,11 @@ const CUSTOM_FACTORY: CustomTextFactory = {
   [CustomTextType.Content_default16]: {
     fontSize: 16,
     fontWeight: 400,
+    color: "#111111",
+  },
+  [CustomTextType.Content_default14_bold]: {
+    fontSize: 14,
+    fontWeight: 600,
     color: "#111111",
   },
   [CustomTextType.Content_default18_bold]: {
@@ -228,7 +139,23 @@ const CUSTOM_FACTORY: CustomTextFactory = {
     fontWeight: 400,
     color: "#8c8c8c",
   },
+  [CustomTextType.Content_lightC16]: {
+    fontSize: 16,
+    fontWeight: 400,
+    color: "#666666",
+  },
+  [CustomTextType.Content_lightC20]: {
+    fontSize: 20,
+    fontWeight: 400,
+    color: "#666666",
+  },
+
   //Link
+  [CustomTextType.Link_white16]: {
+    fontSize: 16,
+    fontWeight: 400,
+    color: "#ffffff",
+  },
   [CustomTextType.Link_primary14]: {
     fontSize: 14,
     fontWeight: 400,
@@ -242,35 +169,16 @@ const CUSTOM_FACTORY: CustomTextFactory = {
     color: "#8c8c8c",
     hoverColor: "#111111",
   },
-
-  //deprecated
-  [CustomTextType.Content_highlight18]: {
-    fontSize: 18,
-    fontWeight: 600,
-    color: "#111111",
-  },
-  [CustomTextType.Content_normal14]: {
-    fontSize: 14,
-    fontWeight: 400,
-    color: "#111111",
-  },
-  [CustomTextType.Link_navigation14]: {
-    fontSize: 14,
-    fontWeight: 400,
-    lineHeight: 23,
-    color: "#8c8c8c",
-    hoverColor: "#111;",
-  },
-  [CustomTextType.Title_main16]: {
+  [CustomTextType.Link_light16]: {
     fontSize: 16,
     fontWeight: 400,
     lineHeight: 26,
-    color: "#696969",
+    color: "#696969", //rgb(105, 105, 105)
   },
-  [CustomTextType.Title_main32]: {
-    fontSize: 32,
-    fontWeight: 700,
-    lineHeight: 42,
-    color: "#111111",
+  //other
+  [CustomTextType.Badge]: {
+    fontSize: 12.6,
+    fontWeight: 600,
+    color: "#fff",
   },
 };

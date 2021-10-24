@@ -8,28 +8,24 @@ type LearnNextProps = {
   children?: React.ReactNode;
 };
 export default function LearnNextCard(props: LearnNextProps) {
-  const [TitleText] = useCustomText(
-    HTMLTag.div,
-    CustomTextType.Title_main32,
-    "center"
-  );
-  const [SubTitleText] = useCustomText(
-    HTMLTag.div,
-    CustomTextType.Title_main16,
-    "center"
-  );
+  const [Title] = useCustomText(HTMLTag.div, CustomTextType.Title_default32, {
+    w: "100%",
+    mb: "16px",
+    lineHeight: "1.3",
+    textAlign: "center",
+  });
+  const [SubTitle] = useCustomText(HTMLTag.div, CustomTextType.Title_lightB16, {
+    w: "100%",
+    mb: "60px",
+    lineHeight: "1.65",
+    textAlign: "center",
+  });
   const [StartButton] = useCustomButton(CustomButtonType.Content_h45_primary);
   return (
     <Component>
       <Content>
-        <Title>
-          <TitleText>Learn Next.js</TitleText>
-        </Title>
-        <SubTitle>
-          <SubTitleText>
-            Learn Next.js step-by-step and earn points ✨.
-          </SubTitleText>
-        </SubTitle>
+        <Title>Learn Next.js</Title>
+        <SubTitle>Learn Next.js step-by-step and earn points ✨.</SubTitle>
         <Figure>
           <Link href="https://nextjs.org/learn/basics/create-nextjs-app">
             <FigureImage></FigureImage>
@@ -55,12 +51,6 @@ const Content = styled.div`
   padding: 100px 16px;
   flex-direction: column;
   align-items: center;
-`;
-const Title = styled.div`
-  margin-bottom: 16px;
-`;
-const SubTitle = styled.div`
-  margin-bottom: 60px;
 `;
 const Figure = styled.div`
   display: flex;
