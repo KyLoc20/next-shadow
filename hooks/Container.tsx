@@ -6,6 +6,7 @@ import { sxProps, JustifyContentValue, AlignItemsValue } from "@/system/sx";
 //display flex will shrink el to content width
 type CustomBoxProps = {
   vertical?: boolean; //shortcut for flex-direction by default "row"
+  noFlex?: boolean;
   wrap?: boolean; //shortcut for flex-wrap by default "no-wrap"
   borderbox?: boolean; //shortcut for box-sizing by default "content-box"
   JC?: JustifyContentValue; //shortcut for justify-content
@@ -18,7 +19,7 @@ const genPropsForCustomBox = (
 ): BoxProps => {
   return {
     //for now it is FlexBox by default
-    display: "flex",
+    display: custom.noFlex ? undefined : "flex",
     flexDirection: custom.vertical ? "column" : undefined,
     flexWrap: custom.wrap ? "wrap" : undefined,
     boxSizing: custom.borderbox ? "border-box" : undefined,

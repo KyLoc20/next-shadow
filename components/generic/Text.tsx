@@ -2,18 +2,6 @@ import * as React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { createStyleComponent, sxProps, parseLengthValue } from "@/system/sx";
-
-// export type TextProps = {
-//   children?: React.ReactNode;
-//   fontSize?: number;
-//   fontWeight?: number;
-//   lineHeight?: number;
-//   letterSpacing?: number;
-//   color?: string;
-//   hoverColor?: string; //todo
-//   hoverUnderlined?: boolean;
-//   textAlign?: "left" | "right" | "center";
-// } & sxProps;
 type LengthValue = number | string | "inherit";
 export type TextLocalProps = {
   fontSize?: LengthValue; //font-size
@@ -119,14 +107,6 @@ const BasicText = styled.div`
   padding: 0;
 `;
 const StyledText = createStyleComponent<sxProps>(BasicText);
-// const DivComponent = BasicText;
-// const SpanComponent = styled(BasicText.withComponent("span"))``;
-// const HeadingOneComponent = styled(BasicText.withComponent("h1"))``;
-// const HeadingTwoComponent = styled(BasicText.withComponent("h2"))``;
-// const HeadingThreeComponent = styled(BasicText.withComponent("h3"))``;
-// const HeadingFourComponent = styled(BasicText.withComponent("h4"))``;
-// const ParagraphComponent = styled(BasicText.withComponent("p"))``;
-
 const DivComponent = StyledText.withComponent("div");
 const SpanComponent = StyledText.withComponent("span");
 const HeadingOneComponent = StyledText.withComponent("h1");
@@ -134,8 +114,3 @@ const HeadingTwoComponent = StyledText.withComponent("h2");
 const HeadingThreeComponent = StyledText.withComponent("h3");
 const HeadingFourComponent = StyledText.withComponent("h4");
 const ParagraphComponent = StyledText.withComponent("p");
-
-const parseNumberWithPx = (v: number | undefined) =>
-  v != null ? `${v}px` : undefined;
-const parseNumberWithEm = (v: number | undefined) =>
-  v != null ? `${v}em` : undefined;

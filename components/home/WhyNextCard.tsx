@@ -26,10 +26,12 @@ export default function WhyNextCard(props: WhyNextProps) {
   const [Title] = useCustomText(HTMLTag.div, CustomTextType.Title_default32, {
     mb: "16px 0",
     lineHeight: "1.3",
+    textAlign: "center",
   });
   const [SubTitle] = useCustomText(HTMLTag.div, CustomTextType.Title_lightB16, {
     mb: "48px",
     lineHeight: "1.65",
+    textAlign: "center",
   });
   const featureItems = features.map((item, index) => (
     <FeatureCard

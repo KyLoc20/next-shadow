@@ -13,7 +13,6 @@ enum HTMLTag {
 type TextTagFactory = {
   [key in HTMLTag]: (props: Text.TextProps) => JSX.Element;
 };
-type TextAlign = "left" | "right" | "center";
 const TEXT_FACTORY: TextTagFactory = {
   [HTMLTag.div]: Text.Div,
   [HTMLTag.span]: Text.Span,

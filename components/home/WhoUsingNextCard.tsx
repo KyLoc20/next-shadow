@@ -66,27 +66,22 @@ export default function WhoUsingNextCard(props: WhoUsingNextCardProps) {
           imgUrl={item.imgUrl}
         />
       ));
-
-  const [TextWrapper] = useCustomBox(
-    {
-      vertical: true,
-      AI: "center",
-      borderbox: true,
-    },
-    {
-      w: "100%",
-      overflow: "hidden",
-      m: "0 auto",
-      p: "0 10px",
-      maxWidth: 1024,
-    }
-  );
   const [Title] = useCustomText(HTMLTag.div, CustomTextType.Title_default32, {
-    mb: "16px",
+    boxSizing: "border-box",
+    w: "100%",
+    p: "0 10px",
+    maxWidth: 1024,
     lineHeight: "1.3",
+    textAlign: "center",
+    mb: "16px",
   });
   const [SubTitle] = useCustomText(HTMLTag.div, CustomTextType.Title_lightB16, {
+    boxSizing: "border-box",
+    w: "100%",
+    p: "0 10px",
+    maxWidth: 1024,
     lineHeight: "1.65",
+    textAlign: "center",
   });
   const [ViewShowcaseButton] = useCustomButton(
     CustomButtonType.Content_h45_primary
@@ -95,23 +90,11 @@ export default function WhoUsingNextCard(props: WhoUsingNextCardProps) {
     <Component>
       <Content>
         <CaseStudyEntranceCard />
-        <TextWrapper>
-          <Title>Who’s Using Next.js</Title>
-          <SubTitle>
-            We’re honored some of the most talented creatives out there build
-            with Next.js
-          </SubTitle>
-        </TextWrapper>
-
-        {/* <Title>
-          <TitleText>Who’s Using Next.js</TitleText>
-        </Title>
+        <Title>Who’s Using Next.js</Title>
         <SubTitle>
-          <SubTitleText>
-            We’re honored some of the most talented creatives out there build
-            with Next.js
-          </SubTitleText>
-        </SubTitle> */}
+          We’re honored some of the most talented creatives out there build with
+          Next.js
+        </SubTitle>
         <CaseWrapper>{caseItems}</CaseWrapper>
         <ViewShowcaseButton>View Showcase</ViewShowcaseButton>
       </Content>
