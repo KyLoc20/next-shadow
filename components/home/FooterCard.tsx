@@ -3,10 +3,26 @@ import styled from "@emotion/styled";
 import { useCustomText, HTMLTag, CustomTextType } from "@/hooks/Text";
 import { Link } from "../generic/Link";
 import * as SVG from "@/components/generic/SVG";
+import { useWindowSize } from "@/hooks/Window";
+import { isMobile } from "@/utils/media";
+import { useCustomBox } from "@/hooks/Container";
 type FooterProps = {
   children?: React.ReactNode;
 };
 export default function FooterCard(props: FooterProps) {
+  const winSize = useWindowSize();
+  const [Content] = useCustomBox(
+    {
+      noFlex: true,
+      borderbox: true,
+    },
+    {
+      overflow: "hidden",
+      m: "0 auto",
+      p: "32px 16px 64px",
+      maxWidth: 1024,
+    }
+  );
   const [CopyrightText] = useCustomText(
     HTMLTag.p,
     CustomTextType.Content_light12,
@@ -15,11 +31,29 @@ export default function FooterCard(props: FooterProps) {
   return (
     <Component>
       <Content>
-        <Grid>
-          <NavigationCard {...NavigationGeneral}></NavigationCard>
-          <NavigationCard {...NavigationMore}></NavigationCard>
-          <NavigationCard {...NavigationAbout}></NavigationCard>
-          <NavigationCard {...NavigationLegal}></NavigationCard>
+        <Grid
+          style={{
+            gridTemplateColumns: isMobile(winSize.width)
+              ? "1fr 1fr"
+              : "1fr 1fr 1fr 1fr",
+          }}
+        >
+          <NavigationCard
+            {...NavigationGeneral}
+            isMobile={isMobile(winSize.width)}
+          ></NavigationCard>
+          <NavigationCard
+            {...NavigationMore}
+            isMobile={isMobile(winSize.width)}
+          ></NavigationCard>
+          <NavigationCard
+            {...NavigationAbout}
+            isMobile={isMobile(winSize.width)}
+          ></NavigationCard>
+          <NavigationCard
+            {...NavigationLegal}
+            isMobile={isMobile(winSize.width)}
+          ></NavigationCard>
         </Grid>
         <CopyRight>
           <svg width={88} height={20} viewBox="0 0 283 64">
@@ -38,22 +72,28 @@ type Navigation = {
   name: string;
 };
 type NavigationProps = {
-  children?: React.ReactNode;
   items: Navigation[];
   title: string;
 };
-function NavigationCard(props: NavigationProps) {
+type NavigationCard = {
+  children?: React.ReactNode;
+  isMobile: boolean;
+} & NavigationProps;
+function NavigationCard(props: NavigationCard) {
   const [TitleText] = useCustomText(
     HTMLTag.h4,
     CustomTextType.Title_default14,
-    { m: "19px 0 12px" }
+    { m: props.isMobile ? undefined : "19px 0 12px" }
   );
   const [NavigationText] = useCustomText(
     HTMLTag.p,
     CustomTextType.Link_light14,
-    { mb: "4px", lineHeight: 23 }
+    {
+      mb: props.isMobile ? undefined : "4px",
+      p: props.isMobile ? "15px 0" : undefined,
+      lineHeight: 23,
+    }
   );
-
   const navigationItems = props.items.map((item, index) => (
     <Link href={item.link} key={index}>
       <NavigationText>{item.name}</NavigationText>
@@ -67,29 +107,13 @@ function NavigationCard(props: NavigationProps) {
   );
 }
 const Component = styled.section`
-  //a must flex+w100
-  display: flex;
-  width: 100%;
   //paper
   background-color: #fafafa;
   border-top: 1px solid #eaeaea;
   border-bottom: 1px solid #eaeaea;
 `;
-const Content = styled.footer`
-  //for content
-  overflow: hidden;
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-  max-width: 1024px;
-  margin: 0 auto;
-  padding: 32px 16px 64px;
-`;
 const Grid = styled.div`
-  width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-row-gap: 2rem;
 `;
 const CopyRight = styled.div`

@@ -104,7 +104,7 @@ export default function SubscribeCard(props: SubscribeProps) {
 const Component = styled.section`
   display: flex;
   align-items: center;
-  justify-content: center;
+  // justify-content: center;
   width: 100%;
 `;
 const Grid = styled.div`
